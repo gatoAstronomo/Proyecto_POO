@@ -1,4 +1,12 @@
-# intelliJ jUnit Maven template  
-jdk = 22  
-jUnit = 5.10.2  
-Maven = 4.0.0  
+University Course Manager
+====================================
+Sintaxis
+---------------
+- Clases definidas con iniciales en mayúsculas  
+- Métodos inicial minúscula y en formato camelCase
+
+Opciones
+-------------
+Ver avance curricular  
+Simular semestres  
+Ocupar variables tipo string siempre que sea posible
