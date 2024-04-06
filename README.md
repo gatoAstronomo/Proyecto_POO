@@ -9,5 +9,9 @@ Aspectos a considerar
 
 Opciones principales a implementar
 -------------
-- Ver avance curricular de la carrera de Ing. Civil Informatica UFRO  
-- Simular avance curricular 
+- Simular avance curricular de un alumno de la carrera de Ing. Civil Informatica UFRO 
+- Simular plan de estudios de un alumno de la carrera de Ing. Civil Informatica UFRO
+- Ver por medio de una GUI el avance curricular de un alumno
+- Ver por medio de una GUI el plan de estudios que ha seguido un alumno
+
+- Método que reciba la propiedad nombre de Asignatura y retorne su numeroId y viceversa

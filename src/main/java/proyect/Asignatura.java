@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class Asignatura{
     String nombre;
-    String numeroId;
-    String nivel;
-    String horasSct;
-    ArrayList<String> preRequisitos = new ArrayList<>();
+    int numeroId;
+    int nivel;
+    int horasSct;
+    ArrayList<int> idPrerrequisitos = new ArrayList<int>();
 
-    Asignatura(String nombre, String numeroId, String nivel, String horasSct){
+    Asignatura(String nombre, int numeroId, int nivel, int horasSct){
         this.nombre = nombre;
         this.numeroId = numeroId;
         this.nivel = nivel;
