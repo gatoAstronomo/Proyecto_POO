@@ -49,4 +49,5 @@ public class Asignatura{
         this.idPrerrequisitos = idPrerrequisitos;
     }
 
+
 }   
