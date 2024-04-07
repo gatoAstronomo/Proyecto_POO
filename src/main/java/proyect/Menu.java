@@ -51,7 +51,7 @@ public class Menu {
         }
     }
 
-    public static void main(String[] args) {
+    public static void prenderMenu(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean salir = false;
         DataBase asignaturasInformatica = new DataBase();
