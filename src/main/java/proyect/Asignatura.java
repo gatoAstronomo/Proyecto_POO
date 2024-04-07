@@ -7,7 +7,7 @@ public class Asignatura{
     int numeroId;
     int nivel;
     int horasSct;
-    ArrayList<int> idPrerrequisitos = new ArrayList<int>();
+    ArrayList<Integer> idPrerrequisitos = new ArrayList<Integer>();
 
     Asignatura(String nombre, int numeroId, int nivel, int horasSct){
         this.nombre = nombre;
@@ -15,4 +15,5 @@ public class Asignatura{
         this.nivel = nivel;
         this.horasSct = horasSct;
     }
-}
+
+}   
