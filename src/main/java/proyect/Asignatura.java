@@ -48,6 +48,9 @@ public class Asignatura{
     public void setIdPrerrequisitos(ArrayList<Integer> idPrerrequisitos){
         this.idPrerrequisitos = idPrerrequisitos;
     }
+    public void addIdPrerrequisito(int idPrerrequisito){
+        this.idPrerrequisitos.add(idPrerrequisito);
+    }
 
 
 }   
