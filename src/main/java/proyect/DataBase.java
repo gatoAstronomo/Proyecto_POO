@@ -25,22 +25,19 @@ public class DataBase{
 
     private Asignatura procesarLinea(String linea) {
         String[] datos = linea.split(",");
-        String nombre = datos[0];
-        int numeroId = Integer.parseInt(datos[1]);
-        int nivel = Integer.parseInt(datos[2]);
-        int horasSct = Integer.parseInt(datos[3]);
-        ArrayList<Integer> idPrerrequisitos = obtenerPrerrequisitos(datos);
-        Asignatura asignatura = new Asignatura(nombre, numeroId, nivel, horasSct, idPrerrequisitos);
-        return asignatura;
+
+        Asignatura ramo = new Asignatura();
+        ramo.setNombre(datos[0]);
+        ramo.setNumeroId(Integer.parseInt(datos[1]));
+        ramo.setNivel(Integer.parseInt(datos[2]));
+        ramo.setHorasSct(Integer.parseInt(datos[3]));
+        ramo.setIdPrerrequisitos(asignarPrerrequisitos(datos, ramo));
+        return ramo;
     }
 
-    private ArrayList<Integer> obtenerPrerrequisitos(String[] datos) {
-        ArrayList<Integer> idPrerrequisitos = new ArrayList<Integer>();
-        for (int i = 4; i < datos.length; i++) {
-            int requisito = Integer.parseInt(datos[i]);
-            idPrerrequisitos.add(requisito);
-        }
-        return idPrerrequisitos;
+    private ArrayList<Integer> asignarPrerrequisitos(String[] datos, Asignatura ramo) {
+        for (int i = 4; i < datos.length; i++) ramo.addIdPrerrequisito(Integer.parseInt(datos[i]));
+        return ramo.getIdPrerrequisitos();
     }
 
     public void imprimirAsignaturas(){
