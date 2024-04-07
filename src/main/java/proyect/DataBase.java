@@ -21,6 +21,12 @@ public class DataBase{
             System.out.println("Error al leer el archivo");
         }
         this.asignaturas = asignaturas;
+        
+        for(Asignatura ramo : asignaturas){
+            ramo.setNombrePrerrequisitos(asignarNombrePrerrequisitos(ramo)); 
+        }
+
+        this.asignaturas = asignaturas;
     }
 
     private Asignatura procesarLinea(String linea) {
@@ -31,13 +37,26 @@ public class DataBase{
         ramo.setNumeroId(Integer.parseInt(datos[1]));
         ramo.setNivel(Integer.parseInt(datos[2]));
         ramo.setHorasSct(Integer.parseInt(datos[3]));
-        ramo.setIdPrerrequisitos(asignarPrerrequisitos(datos, ramo));
+        ramo.setIdPrerrequisitos(asignarIdPrerrequisitos(datos));
         return ramo;
     }
 
-    private ArrayList<Integer> asignarPrerrequisitos(String[] datos, Asignatura ramo) {
-        for (int i = 4; i < datos.length; i++) ramo.addIdPrerrequisito(Integer.parseInt(datos[i]));
-        return ramo.getIdPrerrequisitos();
+    private ArrayList<Integer> asignarIdPrerrequisitos(String[] datos) {
+        ArrayList<Integer> idPrerrequisitos = new ArrayList<>();
+        for (int i = 4; i < datos.length; i++) idPrerrequisitos.add(Integer.parseInt(datos[i]));
+        return idPrerrequisitos;
+    }
+
+    private ArrayList<String> asignarNombrePrerrequisitos(Asignatura ramo){
+        ArrayList<Integer> idRequisitos = ramo.idPrerrequisitos;
+        ArrayList<String> nombreRequisitos = new ArrayList<String>();
+
+        for(int i = 0; i < idRequisitos.size(); i++){
+            Asignatura asignatura = buscarAsignaturaPorId(idRequisitos.get(i));
+            String prerrequisito = asignatura.getNombre();
+            nombreRequisitos.add(prerrequisito); 
+        }
+        return nombreRequisitos;
     }
 
     public void imprimirAsignaturas(){

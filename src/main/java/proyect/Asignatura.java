@@ -2,12 +2,15 @@ package proyect;
 
 import java.util.ArrayList;
 
+import javax.xml.crypto.Data;
+
 public class Asignatura{
     String nombre;
     int numeroId;
     int nivel;
     int horasSct;
     ArrayList<Integer> idPrerrequisitos = new ArrayList<Integer>();
+    ArrayList<String> nombrePrerrequisitos = new ArrayList<String>();
 
     Asignatura(String nombre, int numeroId, int nivel, int horasSct, ArrayList<Integer> idPrerrequisitos){
         this.nombre = nombre;
@@ -24,13 +27,19 @@ public class Asignatura{
         System.out.println("Número ID: " + this.numeroId);
         System.out.println("Nivel: " + this.nivel);
         System.out.println("Horas SCT: " + this.horasSct);
-        imprimirPrerrequisitos();
+        imprimirPrerrequisitosNombre();
         System.out.println("\n");
     }
-    public void imprimirPrerrequisitos(){
+    public void imprimirPrerrequisitosId(){
         System.out.print("Prerrequisitos: " + this.idPrerrequisitos.get(0));
         for(int i = 1; i < this.idPrerrequisitos.size(); i++) {
             System.out.print(", " + this.idPrerrequisitos.get(i));
+        }
+    }
+    public void imprimirPrerrequisitosNombre(){
+        System.out.print("Prerrequisitos: " + this.nombrePrerrequisitos.get(0));
+        for(int i = 1; i < this.nombrePrerrequisitos.size(); i++){
+            System.out.print(", " + this.nombrePrerrequisitos.get(i));
         }
     }
     // Getters y Setters
@@ -67,6 +76,16 @@ public class Asignatura{
     }
     public void addIdPrerrequisito(int idPrerrequisito){
         this.idPrerrequisitos.add(idPrerrequisito);
+    }
+
+    public ArrayList<String> getNombrePrerrequisitos(){
+        return this.nombrePrerrequisitos;
+    }
+    public void setNombrePrerrequisitos(ArrayList<String> nombrePrerrequisitos){
+        this.nombrePrerrequisitos = nombrePrerrequisitos;
+    }
+    public void addNombrePrerrequisito(String nombrePrerrequisito){
+        this.nombrePrerrequisitos.add(nombrePrerrequisito);
     }
 
 
