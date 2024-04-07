@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Alumno {
     String nombre;
     String matricula;
-    ArrayList<Asignatura> idAsignaturasAprobadas = new ArrayList<>();
+    ArrayList<Integer> idAsignaturasAprobadas = new ArrayList<Integer>();
 
     Alumno(String nombre, String matricula){
         this.nombre = nombre;

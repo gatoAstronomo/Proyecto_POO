@@ -25,6 +25,7 @@ public class Asignatura{
         System.out.println("Nivel: " + this.nivel);
         System.out.println("Horas SCT: " + this.horasSct);
         imprimirPrerrequisitos();
+        System.err.println("\n");
     }
     public void imprimirPrerrequisitos(){
         System.out.print("Prerrequisitos: " + this.idPrerrequisitos.get(0));
