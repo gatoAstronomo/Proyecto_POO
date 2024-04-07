@@ -49,4 +49,10 @@ public class DataBase{
     public ArrayList<Asignatura> getAsignaturas(){
         return this.asignaturas;
     }
+    public Asignatura buscarAsignaturaPorId(int numeroId){
+        for (Asignatura asignatura : this.asignaturas) {
+            if (asignatura.getNumeroId() == numeroId) return asignatura;
+        }
+        return null;
+    }
 }
