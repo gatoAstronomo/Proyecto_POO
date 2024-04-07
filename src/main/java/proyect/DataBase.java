@@ -10,6 +10,7 @@ public class DataBase{
 
     public void leerAsignaturas(String archivo) {
         ArrayList<Asignatura> asignaturas = new ArrayList<Asignatura>();
+        ArrayList<Integer> idPrerrequisitos = new ArrayList<Integer>();
 
         try {
             BufferedReader br = new BufferedReader(new FileReader(archivo));
@@ -20,7 +21,12 @@ public class DataBase{
                 int numeroId = Integer.parseInt(datos[1]);
                 int nivel = Integer.parseInt(datos[2]);
                 int horasSct = Integer.parseInt(datos[3]);
-                Asignatura asignatura = new Asignatura(nombre, numeroId, nivel, horasSct);
+                for(int i = 4; i < datos.length; i++){
+                    int requisito = Integer.parseInt(datos[i]);
+                    idPrerrequisitos.add(requisito);
+                }
+                    
+                Asignatura asignatura = new Asignatura(nombre, numeroId, nivel, horasSct, idPrerrequisitos);
                 asignaturas.add(asignatura);
             }
             br.close();
@@ -36,6 +42,10 @@ public class DataBase{
             System.out.println("Número ID: " + asignatura.numeroId);
             System.out.println("Nivel: " + asignatura.nivel);
             System.out.println("Horas SCT: " + asignatura.horasSct);
+            System.out.print("Prerrequisitos: " + asignatura.idPrerrequisitos.get(0));
+            for(int i = 1; i < asignatura.idPrerrequisitos.size(); i++) {
+                System.out.print(", " + asignatura.idPrerrequisitos.get(i));
+            }
             System.out.println();
         }
     }

@@ -9,11 +9,12 @@ public class Asignatura{
     int horasSct;
     ArrayList<Integer> idPrerrequisitos = new ArrayList<Integer>();
 
-    Asignatura(String nombre, int numeroId, int nivel, int horasSct){
+    Asignatura(String nombre, int numeroId, int nivel, int horasSct, ArrayList<Integer> idPrerrequisitos){
         this.nombre = nombre;
         this.numeroId = numeroId;
         this.nivel = nivel;
         this.horasSct = horasSct;
+        this.idPrerrequisitos = idPrerrequisitos;
     }
 
 }   
