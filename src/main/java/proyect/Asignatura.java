@@ -16,6 +16,9 @@ public class Asignatura{
         this.horasSct = horasSct;
         this.idPrerrequisitos = idPrerrequisitos;
     }
+    Asignatura(){
+
+    }
     // Getters y Setters
     public String getNombre(){
         return this.nombre;
