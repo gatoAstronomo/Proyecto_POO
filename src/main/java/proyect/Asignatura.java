@@ -76,7 +76,6 @@ public class Asignatura{
     public void addIdPrerrequisito(int idPrerrequisito){
         this.idPrerrequisitos.add(idPrerrequisito);
     }
-
     public ArrayList<String> getNombrePrerrequisitos(){
         return this.nombrePrerrequisitos;
     }
@@ -86,6 +85,5 @@ public class Asignatura{
     public void addNombrePrerrequisito(String nombrePrerrequisito){
         this.nombrePrerrequisitos.add(nombrePrerrequisito);
     }
-
-
+    
 }   
