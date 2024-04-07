@@ -50,7 +50,6 @@ public class DataBase{
     private ArrayList<String> asignarNombrePrerrequisitos(Asignatura ramo){
         ArrayList<Integer> idRequisitos = ramo.idPrerrequisitos;
         ArrayList<String> nombreRequisitos = new ArrayList<String>();
-
         for(int i = 0; i < idRequisitos.size(); i++){
             Asignatura asignatura = buscarAsignaturaPorId(idRequisitos.get(i));
             String prerrequisito = asignatura.getNombre();
