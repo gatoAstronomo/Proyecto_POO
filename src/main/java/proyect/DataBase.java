@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.BufferedReader;
 
-public class Asignaturas {
+public class DataBase{
     ArrayList<Asignatura> asignaturas = new ArrayList<Asignatura>();
 
     public void leerAsignaturas(String archivo) {
@@ -38,5 +38,9 @@ public class Asignaturas {
             System.out.println("Horas SCT: " + asignatura.horasSct);
             System.out.println();
         }
+    }
+
+    public ArrayList<Asignatura> getAsignaturas(){
+        return this.asignaturas;
     }
 }
