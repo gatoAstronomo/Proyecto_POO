@@ -2,10 +2,9 @@ package proyect;
 
 
 public class Main {
-    public static void main(String[] args) {
-        Asignaturas asignaturasInformatica = new Asignaturas();
-        asignaturasInformatica.leerAsignaturas("C:/Users/alvar/OneDrive/Escritorio/Proyecto_POO/asignaturasInformatica.csv");
+    public static void main(String[] args){
+        DB asignaturasInformatica = new DB();
+        asignaturasInformatica.leerAsignaturas("asignaturasInformatica.csv");
         asignaturasInformatica.imprimirAsignaturas();      
     }
-
 }
