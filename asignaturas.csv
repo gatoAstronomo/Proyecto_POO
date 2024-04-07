@@ -1,3 +1,61 @@
-Quimica,1,1,64
-Fisica1,2,1,64
-Calculo,3,1,64
+Nombre numeroId nivel horasSct
+
+Calculo Multivariable,15,3,5
+Algebra Lineal,16,3,5
+Fisica II,17,3,6
+Electivo de Ingenieria,18,3,3
+Taller De Programacion,19,3,3
+Ecodiseño,20,3,4
+
+Programacion Orientada A Objetos,21,4,5
+Ecuaciones Diferenciales,22,4,6
+Fisica III,23,4,5
+Taller De Computacion,24,4,4
+Electivo Formacion General I,25,4,3
+Taller De Diseño De Ingenieria,26,4,6
+
+Probabilidad y Estadistica para Ingenieria,27,5,5
+Bases de Datos,28,5,4
+Internet y Sistemas Operativos,29,5,6
+Algoritmos y Paradigmas,30,5,6
+Electivo Formacion General II,31,5,3
+Economia y Finanzas Empresariales,32,5,5
+
+Ciencias de la Computacion,33,6,5
+Taller de Bases de Datos,34,6,6
+Computacion en la Nube,35,6,6
+Ingenieria de Software,36,6,6
+Diseño Integral de Productos,37,6,4
+
+Sistemas Inteligentes,38,7,6
+Ingenieria de Datos,39,7,4
+Ciberseguridad,40,7,6
+Diseño de experiencia de usuario,41,7,6
+Electivo de Formacion General III,42,7,3
+Diseño de Negocios Innovadores,43,7,4
+
+Taller de Ingenieria de Datos,44,8,7
+Taller de IoT y Robótica,45,8,5
+Taller de Ingenieria de Software,46,8,6
+Taller Habilidades Profesionales,47,8,4
+Taller de Empresas Tecnologicas,48,8,5
+
+Electivo de Especialidad I,49,9,4
+Electivo de Especialidad II,50,9,4
+Direccion de Proyectos,51,9,6
+Proyecto de Desarrollo de Software,52,9,7
+Electivo de Formacion General IV,53,9,3
+Diseño Proyecto de Ingenieria Informatica,54,9,5
+
+Electivo de Especialidad III,55,10,4
+Investigacion Aplicada en Informatica,56,10,7
+Proyecto de Integracion de Informatica,57,10,6
+Electivo de Especialidad IV,58,10,4
+Capstone Multidisciplinario,59,10,5
+
+Actividad de Titulacion,60,11,29
+
+Ingles Principiante,10,3,0
+Ingles Basico,12,4,0
+Ingles PreIntermedio,13,6,0
+Ingles Intermedio,14,7,0
