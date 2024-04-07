@@ -24,6 +24,13 @@ public class Asignatura{
         System.out.println("Número ID: " + this.numeroId);
         System.out.println("Nivel: " + this.nivel);
         System.out.println("Horas SCT: " + this.horasSct);
+        imprimirPrerrequisitos();
+    }
+    public void imprimirPrerrequisitos(){
+        System.out.print("Prerrequisitos: " + this.idPrerrequisitos.get(0));
+        for(int i = 1; i < this.idPrerrequisitos.size(); i++) {
+            System.out.print(", " + this.idPrerrequisitos.get(i));
+        }
     }
     // Getters y Setters
     public String getNombre(){
