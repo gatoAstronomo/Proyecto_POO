@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.BufferedReader;
 
-public class DB{
+public class DataBase{
     ArrayList<Asignatura> asignaturas = new ArrayList<Asignatura>();
 
     public void leerAsignaturas(String archivo) {
