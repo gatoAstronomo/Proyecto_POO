@@ -27,4 +27,14 @@ public class Asignaturas {
         }
         return asignaturas;
     }
+
+    public static void imprimirAsignaturas(ArrayList<Asignatura> asignaturas){
+        for (Asignatura asignatura : asignaturas) {
+            System.out.println("Nombre: " + asignatura.nombre);
+            System.out.println("Número ID: " + asignatura.numeroId);
+            System.out.println("Nivel: " + asignatura.nivel);
+            System.out.println("Horas SCT: " + asignatura.horasSct);
+            System.out.println();
+        }
+    }
 }
