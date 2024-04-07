@@ -40,6 +40,12 @@ public class DataBase{
         return ramo.getIdPrerrequisitos();
     }
 
+    public void imprimirAsignaturas(){
+        for (Asignatura asignatura : this.asignaturas) {
+            asignatura.imprimirAsignatura();
+        }
+    }
+
     public ArrayList<Asignatura> getAsignaturas(){
         return this.asignaturas;
     }
