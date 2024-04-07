@@ -5,9 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.BufferedReader;
 
-public class Asignaturas{
-    ArrayList<Asignatura> asignaturas = leerAsignaturas("asignaturas.csv");
-
+public class Asignaturas {
     public static ArrayList<Asignatura> leerAsignaturas(String archivo) {
         ArrayList<Asignatura> asignaturas = new ArrayList<Asignatura>();
 
