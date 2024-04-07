@@ -2,7 +2,6 @@ package proyect;
 
 import java.util.ArrayList;
 
-import javax.xml.crypto.Data;
 
 public class Asignatura{
     String nombre;

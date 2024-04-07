@@ -1,5 +1,6 @@
 package proyect;
-import java.util.ArrayList;
+import java.util.ArrayList; 
+
 
 public class Alumno {
     String nombre;
@@ -11,5 +12,11 @@ public class Alumno {
         this.matricula = matricula;
     }
 
-    public void agregarAsignaturaAprobada(){}
+    Alumno(String nombre, String matricula, ArrayList<Integer> idAsignaturasAprobadas) {
+        this.nombre = nombre;
+        this.matricula = matricula;
+        this.idAsignaturasAprobadas = idAsignaturasAprobadas;
+    }
 }
+
+
