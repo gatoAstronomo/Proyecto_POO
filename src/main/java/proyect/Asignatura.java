@@ -19,6 +19,12 @@ public class Asignatura{
     Asignatura(){
 
     }
+    public void imprimirAsignatura(){
+        System.out.println("Nombre: " + this.nombre);
+        System.out.println("Número ID: " + this.numeroId);
+        System.out.println("Nivel: " + this.nivel);
+        System.out.println("Horas SCT: " + this.horasSct);
+    }
     // Getters y Setters
     public String getNombre(){
         return this.nombre;
