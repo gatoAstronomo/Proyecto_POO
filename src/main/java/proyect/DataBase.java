@@ -40,24 +40,6 @@ public class DataBase{
         return ramo.getIdPrerrequisitos();
     }
 
-    public void imprimirAsignaturas(){
-        for (Asignatura asignatura : this.asignaturas) {
-            System.out.println("Nombre: " + asignatura.nombre);
-            System.out.println("Número ID: " + asignatura.numeroId);
-            System.out.println("Nivel: " + asignatura.nivel);
-            System.out.println("Horas SCT: " + asignatura.horasSct);
-            System.out.print("Prerrequisitos: " + asignatura.idPrerrequisitos.get(0));
-            imprimirPrerrequisitos(asignatura);
-        }
-    }
-
-    public void imprimirPrerrequisitos(Asignatura asignatura){
-        for(int i = 1; i < asignatura.idPrerrequisitos.size(); i++) {
-                System.out.print(", " + asignatura.idPrerrequisitos.get(i));
-            }
-            System.out.println("\n");
-    }
-
     public ArrayList<Asignatura> getAsignaturas(){
         return this.asignaturas;
     }
