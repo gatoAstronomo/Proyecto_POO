@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.io.BufferedReader;
 
 public class Asignaturas {
-    public static ArrayList<Asignatura> leerAsignaturas(String archivo) {
+    ArrayList<Asignatura> asignaturas = new ArrayList<Asignatura>();
+
+    public void leerAsignaturas(String archivo) {
         ArrayList<Asignatura> asignaturas = new ArrayList<Asignatura>();
 
         try {
@@ -25,11 +27,11 @@ public class Asignaturas {
         } catch (IOException e) {
             System.out.println("Error al leer el archivo");
         }
-        return asignaturas;
+        this.asignaturas = asignaturas;
     }
 
-    public static void imprimirAsignaturas(ArrayList<Asignatura> asignaturas){
-        for (Asignatura asignatura : asignaturas) {
+    public void imprimirAsignaturas(){
+        for (Asignatura asignatura : this.asignaturas) {
             System.out.println("Nombre: " + asignatura.nombre);
             System.out.println("Número ID: " + asignatura.numeroId);
             System.out.println("Nivel: " + asignatura.nivel);

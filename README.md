@@ -1,5 +1,10 @@
 University Course Manager
 ====================================
+Objetivo final
+--------------
+- Simular avance curricular de un alumno de la carrera de Ing. Civil Informatica UFRO
+- Simular plan de estudios de un alumno de la carrera de Ing. Civil Informatica UFRO
+
 Aspectos a considerar 
 ---------------
 - Se contaran las asignaturas a partir del tercer nivel de la malla
@@ -10,8 +15,6 @@ Aspectos a considerar
 
 Opciones principales a implementar
 -------------
-- Simular avance curricular de un alumno de la carrera de Ing. Civil Informatica UFRO
-- Simular plan de estudios de un alumno de la carrera de Ing. Civil Informatica UFRO
+- Método que reciba la propiedad nombre de Asignatura y retorne su numeroId y viceversa
 - Ver por medio de una GUI el avance curricular de un alumno
 - Ver por medio de una GUI el plan de estudios que ha seguido un alumno
-- Método que reciba la propiedad nombre de Asignatura y retorne su numeroId y viceversa
