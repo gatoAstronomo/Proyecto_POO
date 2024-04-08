@@ -4,36 +4,61 @@ import java.util.Scanner;
 
 public class Menu {
 
-    public static void imprimirMenu(){
-        System.out.println("***** Menú *****");
-        System.out.println("1. Ver lista de asignaturas");
-        System.out.println("2. Buscar asignatura por ID");
-        System.out.println("3. Salir");
+    public static void limpiarConsola() {
+        try {
+            // Ejecutar el comando 'clear' en la terminal
+            ProcessBuilder pb = new ProcessBuilder("clear");
+            pb.inheritIO();
+            pb.start().waitFor();
+        } catch (Exception e) {
+            System.out.println("Error al limpiar la consola: " + e.getMessage());
+        }
     }
     
-    public static int obtenerOpcion(Scanner scanner){
-        try {
-            System.out.print("Ingrese una opción: ");
-            return scanner.nextInt();
-        } catch (Exception e) {
-            scanner.nextLine();
-            return -1;
-        }    
+    public static void imprimirMenu(){
+        System.out.println("\n***** Menú *****");
+        System.out.println("1. Ver lista de asignaturas");
+        System.out.println("2. Buscar asignatura por ID");
+        System.out.println("3. Buscar asignatura por Nombre");
+        System.out.println("4. Salir");
+        System.out.print("Ingrese una opción: ");
+    }
+    
+    public static int obtenerEntero(Scanner scanner){
+        while(true){
+            try{
+                return Integer.parseInt(scanner.nextLine());
+            }catch(Exception e){
+                System.out.println("Ingrese un entero valido");
+            }
+        }
+    }
+
+    public static String obtenerString(Scanner scanner){
+        return scanner.nextLine();
     }
 
     public static void procesarOpcion(int opcion, DataBase asignaturasInformatica, Scanner scanner) {
         switch (opcion) {
             case 1:
+                limpiarConsola();
                 System.out.println("Asignaturas de la carrera de Ingenieria Civil Informatica");
                 asignaturasInformatica.imprimirAsignaturas();
                 break;
             case 2:
+                limpiarConsola();
                 buscarAsignaturaPorId(asignaturasInformatica, scanner);
                 break;
             case 3:
+                limpiarConsola();
+                buscarAsignaturaPorNombre(asignaturasInformatica, scanner);
+                break;
+            case 4:
+                limpiarConsola();
                 System.out.println("Saliendo del programa...");
                 break;
             default:
+                limpiarConsola();
                 System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
                 break;        
         }
@@ -41,30 +66,43 @@ public class Menu {
 
     public static void buscarAsignaturaPorId(DataBase asignaturasInformatica, Scanner scanner) {
         System.out.print("Ingrese el número de ID de la asignatura a buscar: ");
-        int id = scanner.nextInt();
+        int id = obtenerEntero(scanner);
         Asignatura asignaturaEncontrada = asignaturasInformatica.buscarAsignaturaPorId(id);
         if (asignaturaEncontrada != null) {
-            System.out.println("Asignatura encontrada:");
+            System.out.println("\nAsignatura encontrada:");
             asignaturaEncontrada.imprimirAsignatura();
         } else {
-            System.out.println("No se encontró ninguna asignatura con ese ID.");
+            System.out.println("\nNo se encontró ninguna asignatura con ese ID.");
         }
     }
 
-    public static void prenderMenu(String[] args) {
+    public static void buscarAsignaturaPorNombre(DataBase asignaturasInformatica, Scanner scanner){
+        System.out.print("Ingrese el nombre de la asignatura a buscar: ");
+        String nombre = obtenerString(scanner);
+        Asignatura asignaturaEncontrada = asignaturasInformatica.buscarAsignaturaPorNombre(nombre);
+        
+        if (asignaturaEncontrada != null) {
+            System.out.println("\nAsignatura encontrada:");
+            asignaturaEncontrada.imprimirAsignatura();
+        } else {
+            System.out.println("\nNo se encontró ninguna asignatura con ese Nombre.");
+        }
+    }
+
+    public static void menu(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean salir = false;
         DataBase asignaturasInformatica = new DataBase();
         asignaturasInformatica.leerAsignaturas("asignaturasInformatica.csv");
+
         while (!salir) {
             imprimirMenu();
-            int opcion = obtenerOpcion(scanner);
-            procesarOpcion(opcion, asignaturasInformatica, scanner);
-            if (opcion == 3) {
+            int opcion = obtenerEntero(scanner);
+            procesarOpcion(opcion, asignaturasInformatica,scanner);
+            if (opcion == 4) {
                 salir = true;
             }
         } 
-        scanner.close();  
+        scanner.close();
     }
 }
-

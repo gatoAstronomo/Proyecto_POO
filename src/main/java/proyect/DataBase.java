@@ -73,4 +73,16 @@ public class DataBase{
         }
         return null;
     }
+
+    public Asignatura buscarAsignaturaPorNombre(String nombreBuscar) {
+        for (Asignatura asignatura : this.asignaturas) {
+            String nombreAsignatura = asignatura.getNombre().toLowerCase().replaceAll("\\s+", "");
+            String nombreBuscarFormated = nombreBuscar.toLowerCase().replaceAll("\\s+", "");
+            if (nombreAsignatura.contentEquals(nombreBuscarFormated)){
+                return asignatura;
+            }
+        }
+        return null;
+    }
+    
 }
