@@ -1,5 +1,6 @@
 package proyect;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
@@ -38,32 +39,6 @@ public class Menu {
         return scanner.nextLine();
     }
 
-    public static void procesarOpcion(int opcion, DataBase asignaturasInformatica, Scanner scanner) {
-        switch (opcion) {
-            case 1:
-                limpiarConsola();
-                System.out.println("Asignaturas de la carrera de Ingenieria Civil Informatica");
-                asignaturasInformatica.imprimirAsignaturas();
-                break;
-            case 2:
-                limpiarConsola();
-                buscarAsignaturaPorId(asignaturasInformatica, scanner);
-                break;
-            case 3:
-                limpiarConsola();
-                buscarAsignaturaPorNombre(asignaturasInformatica, scanner);
-                break;
-            case 4:
-                limpiarConsola();
-                System.out.println("Saliendo del programa...");
-                break;
-            default:
-                limpiarConsola();
-                System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
-                break;        
-        }
-    }
-
     public static void buscarAsignaturaPorId(DataBase asignaturasInformatica, Scanner scanner) {
         System.out.print("Ingrese el número de ID de la asignatura a buscar: ");
         int id = obtenerEntero(scanner);
@@ -89,6 +64,19 @@ public class Menu {
         }
     }
 
+    public static void buscarCoincidenciasAsignaturaPorNombre(DataBase asignaturasInformatica, Scanner scanner){
+        System.out.print("Ingrese el nombre de la asignatura a buscar: ");
+        String nombre = obtenerString(scanner);
+        ArrayList<Asignatura> asignaturasEncontradas = asignaturasInformatica.buscarCoincidenciasPorNombre(nombre);
+
+        if (asignaturasEncontradas != null) {
+            System.out.println("\nAsignaturas encontradas:");
+            Asignatura.imprimirAsignaturas(asignaturasEncontradas);
+        } else {
+            System.out.println("\nNo se encontró ninguna asignatura con ese Nombre.");
+        }
+    }
+
     public static void menu(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean salir = false;
@@ -104,5 +92,31 @@ public class Menu {
             }
         } 
         scanner.close();
+    }
+
+    public static void procesarOpcion(int opcion, DataBase asignaturasInformatica, Scanner scanner) {
+        switch (opcion) {
+            case 1:
+                limpiarConsola();
+                System.out.println("Asignaturas de la carrera de Ingenieria Civil Informatica");
+                asignaturasInformatica.imprimirAsignaturas();
+                break;
+            case 2:
+                limpiarConsola();
+                buscarAsignaturaPorId(asignaturasInformatica, scanner);
+                break;
+            case 3:
+                limpiarConsola();
+                buscarCoincidenciasAsignaturaPorNombre(asignaturasInformatica, scanner);
+                break;
+            case 4:
+                limpiarConsola();
+                System.out.println("Saliendo del programa...");
+                break;
+            default:
+                limpiarConsola();
+                System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
+                break;
+        }
     }
 }
