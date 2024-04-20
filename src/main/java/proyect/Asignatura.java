@@ -41,6 +41,11 @@ public class Asignatura{
             System.out.print(", " + this.nombrePrerrequisitos.get(i));
         }
     }
+    public static void imprimirAsignaturas(ArrayList<Asignatura> asignaturas){
+        for (Asignatura asignatura : asignaturas) {
+            asignatura.imprimirAsignatura();
+        }
+    }
     // Getters y Setters
     public String getNombre(){
         return this.nombre;
