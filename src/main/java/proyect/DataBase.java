@@ -84,5 +84,40 @@ public class DataBase{
         }
         return null;
     }
-    
+
+    public ArrayList<Asignatura> buscarCoincidenciasPorNombre(String nombreBuscar) {
+        ArrayList<String> palabrasClave = preprocesarPalabrasClave(nombreBuscar);
+        ArrayList<Asignatura> coincidencias = new ArrayList<>();
+
+        for (Asignatura asignatura : this.asignaturas) {
+            String nombreAsignatura = asignatura.getNombre().toLowerCase().replaceAll("\\s+", "");
+            if (contieneTodasLasPalabras(nombreAsignatura, palabrasClave)) {
+                coincidencias.add(asignatura);
+            }
+        }
+
+        return coincidencias;
+    }
+
+    private ArrayList<String> preprocesarPalabrasClave(String nombreBuscar) {
+        String[] palabras = nombreBuscar.split("\\s+");
+        ArrayList<String> palabrasClave = new ArrayList<>();
+        for (String palabra : palabras) {
+            if (!palabra.equalsIgnoreCase("de")) {
+                palabrasClave.add(palabra.toLowerCase());
+            }
+        }
+        return palabrasClave;
+    }
+
+    private boolean contieneTodasLasPalabras(String nombreAsignatura, ArrayList<String> palabrasClave) {
+        for (String palabra : palabrasClave) {
+            if (!nombreAsignatura.contains(palabra)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
 }
