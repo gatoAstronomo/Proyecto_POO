@@ -10,28 +10,26 @@ public class DataBase{
     ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
 
     public void leerAsignaturas(String archivo) {
-        ArrayList<Asignatura> asignaturas = new ArrayList<Asignatura>();
         try {
             BufferedReader br = new BufferedReader(new FileReader(archivo));
             String linea;
             while ((linea = br.readLine()) != null) {
-                this.asignaturas.add(procesarLinea(linea));
+                procesarLinea(linea);
             }
             br.close();
         } catch (IOException e) {
             System.out.println("Error al leer el archivo");
         }
-
-        cargarNombrePrerequisitos();
+        cargarNombrePrerrequisitosAsignatura();
     }
 
-    public void cargarNombrePrerequisitos(){
+    public void cargarNombrePrerrequisitosAsignatura(){
         for(Asignatura ramo : this.asignaturas){
             ramo.setNombrePrerrequisitos(asignarNombrePrerrequisitos(ramo));
         }
     }
 
-    private Asignatura procesarLinea(String linea) {
+    private void procesarLinea(String linea) {
         String[] datos = linea.split(",");
 
         Asignatura ramo = new Asignatura();
@@ -40,7 +38,7 @@ public class DataBase{
         ramo.setNivel(Integer.parseInt(datos[2]));
         ramo.setHorasSct(Integer.parseInt(datos[3]));
         ramo.setIdPrerrequisitos(asignarIdPrerrequisitos(datos));
-        return ramo;
+        this.asignaturas.add(ramo);
     }
 
     private ArrayList<Integer> asignarIdPrerrequisitos(String[] datos) {
@@ -50,7 +48,7 @@ public class DataBase{
     }
 
     private ArrayList<String> asignarNombrePrerrequisitos(Asignatura ramo){
-        ArrayList<Integer> idRequisitos = ramo.idPrerrequisitos;
+        ArrayList<Integer> idRequisitos = ramo.getIdPrerrequisitos();
         ArrayList<String> nombreRequisitos = new ArrayList<String>();
         for(int i = 0; i < idRequisitos.size(); i++){
             Asignatura asignatura = buscarAsignaturaPorId(idRequisitos.get(i));
@@ -131,6 +129,7 @@ public class DataBase{
         } catch (IOException e) {
             System.out.println("Error al leer el archivo");
         }
+        cargarNombrePrerrequisitosAlumno();
     }
     public void procesarLineaAlumno(String linea){
         String[] datos = linea.split(",");
@@ -151,6 +150,24 @@ public class DataBase{
             alumno.addIdAsignaturaAprobada(Integer.parseInt(datos[i]));
         }
     }
+
+    private ArrayList<String> asignarNombreAprobadas(Alumno alumno){
+        ArrayList<Integer> idAsignaturasAprobadas = alumno.getIdAsignaturasAprobadas();
+        ArrayList<String> nombreAprobadas = new ArrayList<String>();
+        for(int i = 0; i < idAsignaturasAprobadas.size(); i++){
+            Asignatura asignatura = buscarAsignaturaPorId(idAsignaturasAprobadas.get(i));
+            String prerrequisito = asignatura.getNombre();
+            nombreAprobadas.add(prerrequisito);
+        }
+        return nombreAprobadas;
+    }
+
+    public void cargarNombrePrerrequisitosAlumno(){
+        for(Alumno alumno : this.alumnos){
+            alumno.setNombreAsignaturasAprobadas(asignarNombreAprobadas(alumno));
+        }
+    }
+
 
 
 }
