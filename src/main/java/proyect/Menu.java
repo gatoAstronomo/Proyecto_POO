@@ -82,6 +82,7 @@ public class Menu {
         boolean salir = false;
         DataBase asignaturasInformatica = new DataBase();
         asignaturasInformatica.leerAsignaturas("asignaturasInformatica.csv");
+        asignaturasInformatica.leerAlumnos("alumnosInformatica.csv");
 
         while (!salir) {
             imprimirMenu();
@@ -90,7 +91,7 @@ public class Menu {
             if (opcion == 4) {
                 salir = true;
             }
-        } 
+        }
         scanner.close();
     }
 
