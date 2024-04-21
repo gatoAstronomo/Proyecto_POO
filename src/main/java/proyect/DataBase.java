@@ -61,9 +61,7 @@ public class DataBase{
     }
 
     public void imprimirAsignaturas(){
-        for (Asignatura asignatura : this.asignaturas) {
-            asignatura.imprimirAsignatura();
-        }
+        Asignatura.imprimirAsignaturas(this.asignaturas);
     }
 
     public ArrayList<Asignatura> getAsignaturas(){
@@ -119,6 +117,39 @@ public class DataBase{
             }
         }
         return true;
+    }
+    // Métodos para alumnos
+
+    public void leerAlumnos(String archivo){
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(archivo));
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                procesarLineaAlumno(linea);
+            }
+            br.close();
+        } catch (IOException e) {
+            System.out.println("Error al leer el archivo");
+        }
+    }
+    public void procesarLineaAlumno(String linea){
+        String[] datos = linea.split(",");
+        Alumno alumno = new Alumno();
+        alumno.setMatricula(datos[0]);
+        alumno.setNombre(datos[1]);
+        asignarAsignaturasAprobadas(datos, alumno);
+        this.alumnos.add(alumno);
+    }
+    public Alumno buscarAlumnoPorMatricula(String matricula){
+        for (Alumno alumno : this.alumnos) {
+            if (alumno.getMatricula().equals(matricula)) return alumno;
+        }
+        return null;
+    }
+    private void asignarAsignaturasAprobadas(String[] datos, Alumno alumno){
+        for (int i = 2; i < datos.length; i++) {
+            alumno.addIdAsignaturaAprobada(Integer.parseInt(datos[i]));
+        }
     }
 
 
