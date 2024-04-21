@@ -24,12 +24,12 @@ public class Alumno {
     public void imprimirAlumno(){
         System.out.println("Nombre: " + this.nombre);
         System.out.println("Matricula: " + this.matricula);
-        imprimirPrerrequisitosNombre();
+        imprimirAprobadasNombre();
         System.out.println("\n");
     }
 
-    public void imprimirPrerrequisitosNombre(){
-        System.out.print("Prerrequisitos: " + this.nombreAsignaturasAprobadas.get(0));
+    public void imprimirAprobadasNombre(){
+        System.out.print("Aprobadas: " + this.nombreAsignaturasAprobadas.get(0));
         for(int i = 1; i < this.nombreAsignaturasAprobadas.size(); i++){
             System.out.print(", " + this.nombreAsignaturasAprobadas.get(i));
         }
