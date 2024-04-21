@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 
 public class DataBase{
     ArrayList<Asignatura> asignaturas = new ArrayList<Asignatura>();
+    ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
 
     public void leerAsignaturas(String archivo) {
         ArrayList<Asignatura> asignaturas = new ArrayList<Asignatura>();
@@ -14,19 +15,20 @@ public class DataBase{
             BufferedReader br = new BufferedReader(new FileReader(archivo));
             String linea;
             while ((linea = br.readLine()) != null) {
-                asignaturas.add(procesarLinea(linea));
+                this.asignaturas.add(procesarLinea(linea));
             }
             br.close();
         } catch (IOException e) {
             System.out.println("Error al leer el archivo");
         }
-        this.asignaturas = asignaturas;
-        
-        for(Asignatura ramo : asignaturas){
-            ramo.setNombrePrerrequisitos(asignarNombrePrerrequisitos(ramo)); 
-        }
 
-        this.asignaturas = asignaturas;
+        cargarNombrePrerequisitos();
+    }
+
+    public void cargarNombrePrerequisitos(){
+        for(Asignatura ramo : this.asignaturas){
+            ramo.setNombrePrerrequisitos(asignarNombrePrerrequisitos(ramo));
+        }
     }
 
     private Asignatura procesarLinea(String linea) {
