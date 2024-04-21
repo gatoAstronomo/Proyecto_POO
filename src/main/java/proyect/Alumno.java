@@ -6,7 +6,7 @@ public class Alumno {
     String nombre;
     String matricula;
     ArrayList<Integer> idAsignaturasAprobadas = new ArrayList<Integer>();
-    ArrayList<String> nombrePrerrequisitos = new ArrayList<String>();
+    ArrayList<String> nombreAsignaturasAprobadas = new ArrayList<String>();
 
     public Alumno(String nombre, String matricula){
         this.nombre = nombre;
@@ -48,4 +48,11 @@ public class Alumno {
         return this.idAsignaturasAprobadas;
     }
 
+    public void setNombreAsignaturasAprobadas(ArrayList<String> nombreAsignaturasAprobadas) {
+        this.nombreAsignaturasAprobadas = nombreAsignaturasAprobadas;
+    }
+
+    public ArrayList<String> getNombreAsignaturasAprobadas() {
+        return nombreAsignaturasAprobadas;
+    }
 }
