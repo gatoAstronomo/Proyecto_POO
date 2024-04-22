@@ -168,7 +168,7 @@ public class DataBase{
         }
     }
 
-    ArrayList<Asignatura> ramosAElegir(String matricula){
+    public ArrayList<Asignatura> ramosAElegir(String matricula){
         Alumno alumno = buscarAlumnoPorMatricula(matricula);
         ArrayList<Integer> idAsignaturasAprobadas = alumno.getIdAsignaturasAprobadas();
         ArrayList<Asignatura> asignaturasAElegir = new ArrayList<Asignatura>();
@@ -190,4 +190,12 @@ public class DataBase{
         }
         return true;
     }
+
+    public boolean esAlumno(String matricula){
+        for(Alumno alumno :this.alumnos)
+            if(alumno.getMatricula().contentEquals(matricula))
+                return true;
+        return false;
+    }
+
 }
