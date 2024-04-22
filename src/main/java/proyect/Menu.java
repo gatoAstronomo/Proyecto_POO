@@ -9,15 +9,21 @@ public class Menu {
 
     public static void limpiarConsola() {
         try {
-            // Ejecutar el comando 'clear' en la terminal
-            ProcessBuilder pb = new ProcessBuilder("clear");
+            String osName = System.getProperty("os.name").toLowerCase();
+            ProcessBuilder pb;
+            if (osName.contains("windows")) {
+                pb = new ProcessBuilder("cmd", "/c", "cls");
+            } else {
+                pb = new ProcessBuilder("clear");
+            }
             pb.inheritIO();
             pb.start().waitFor();
         } catch (Exception e) {
             System.out.println("Error al limpiar la consola: " + e.getMessage());
         }
     }
-    
+
+
     public static void imprimirMenu(){
         System.out.println("\n***** Menú *****");
         System.out.println("1. Ver lista de asignaturas");
