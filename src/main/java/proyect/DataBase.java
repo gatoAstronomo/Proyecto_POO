@@ -63,7 +63,7 @@ public class DataBase{
     }
 
     public ArrayList<Asignatura> getAsignaturas(){
-        return this.asignaturas;
+        return asignaturas;
     }
     public Asignatura buscarAsignaturaPorId(int numeroId){
         for (Asignatura asignatura : this.asignaturas) {
@@ -168,6 +168,26 @@ public class DataBase{
         }
     }
 
+    ArrayList<Asignatura> ramosAElegir(String matricula){
+        Alumno alumno = buscarAlumnoPorMatricula(matricula);
+        ArrayList<Integer> idAsignaturasAprobadas = alumno.getIdAsignaturasAprobadas();
+        ArrayList<Asignatura> asignaturasAElegir = new ArrayList<Asignatura>();
 
+        for(Asignatura asignatura: asignaturas){
+            if (!idAsignaturasAprobadas.contains(asignatura.getNumeroId()) && cumpleRequisitos(alumno, asignatura)) {
+                    asignaturasAElegir.add(asignatura);
+                }
+            }
 
+        return asignaturasAElegir;
+    }
+
+    public static boolean cumpleRequisitos(Alumno alumno, Asignatura asignatura) {
+        for (Integer i : asignatura.getIdPrerrequisitos()) {
+            if (!alumno.getIdAsignaturasAprobadas().contains(i)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
