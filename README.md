@@ -3,7 +3,6 @@ University Course Manager
 Objetivo final
 --------------
 - Simular avance curricular de un alumno de la carrera de Ing. Civil Informatica UFRO
-- Simular plan de estudios de un alumno de la carrera de Ing. Civil Informatica UFRO
 
 Aspectos a considerar 
 ---------------
