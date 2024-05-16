@@ -57,7 +57,7 @@ public class Menu {
         Asignatura asignaturaEncontrada = asignaturasInformatica.buscarAsignaturaPorId(id);
         if (asignaturaEncontrada != null) {
             System.out.println("\nAsignatura encontrada:");
-            asignaturaEncontrada.imprimirAsignatura();
+            asignaturaEncontrada.toString();
         } else {
             System.out.println("\nNo se encontró ninguna asignatura con ese ID.");
         }
@@ -70,7 +70,7 @@ public class Menu {
         
         if (asignaturaEncontrada != null) {
             System.out.println("\nAsignatura encontrada:");
-            asignaturaEncontrada.imprimirAsignatura();
+            asignaturaEncontrada.toString();
         } else {
             System.out.println("\nNo se encontró ninguna asignatura con ese Nombre.");
         }

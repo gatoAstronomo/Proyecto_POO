@@ -21,19 +21,22 @@ public class Asignatura{
     public Asignatura(){
 
     }
-    public void imprimirAsignatura(){
-        System.out.println("Nombre: " + this.nombre);
-        System.out.println("Número ID: " + this.numeroId);
-        System.out.println("Nivel: " + this.nivel);
-        System.out.println("Horas SCT: " + this.horasSct);
-        imprimirPrerrequisitosNombre();
-        System.out.println("\n");
-    }
-    public void imprimirPrerrequisitosId(){
-        System.out.print("Prerrequisitos: " + this.idPrerrequisitos.get(0));
-        for(int i = 1; i < this.idPrerrequisitos.size(); i++) {
-            System.out.print(", " + this.idPrerrequisitos.get(i));
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Nombre: ").append(nombre).append("\n");
+        sb.append("Número ID: ").append(numeroId).append("\n");
+        sb.append("Nivel: ").append(nivel).append("\n");
+        sb.append("Horas SCT: ").append(horasSct).append("\n");
+        sb.append("Prerrequisitos: ");
+        if (idPrerrequisitos != null && !idPrerrequisitos.isEmpty()) {
+            sb.append(idPrerrequisitos.get(0));
+            for (int i = 1; i < idPrerrequisitos.size(); i++) {
+                sb.append(", ").append(idPrerrequisitos.get(i));
+            }
         }
+        sb.append("\n");
+        return sb.toString();
     }
     public void imprimirPrerrequisitosNombre(){
         System.out.print("Prerrequisitos: " + this.nombrePrerrequisitos.get(0));
@@ -43,7 +46,7 @@ public class Asignatura{
     }
     public static void imprimirAsignaturas(ArrayList<Asignatura> asignaturas){
         for (Asignatura asignatura : asignaturas) {
-            asignatura.imprimirAsignatura();
+            System.out.println(asignatura);
         }
     }
     public String getNombre(){
