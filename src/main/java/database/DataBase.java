@@ -1,5 +1,9 @@
-package proyect;
+package database;
 
+import model.Alumno;
+import model.Asignatura;
+
+import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.io.FileReader;
 import java.io.IOException;
@@ -8,6 +12,11 @@ import java.io.BufferedReader;
 public class DataBase{
     ArrayList<Asignatura> asignaturas = new ArrayList<Asignatura>();
     ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
+
+    public DataBase(){
+        leerAsignaturas("src/main/java/resources/asignaturas.csv");
+        leerAlumnos("src/main/java/resources/alumnos.csv");
+    }
 
     public void leerAsignaturas(String archivo) {
         try {

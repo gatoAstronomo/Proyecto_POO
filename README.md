@@ -17,3 +17,6 @@ Opciones principales a implementar
 - Método que reciba la propiedad nombre de Asignatura y retorne su numeroId y viceversa
 - Ver por medio de una GUI el avance curricular de un alumno
 - Ver por medio de una GUI el plan de estudios que ha seguido un alumno
+
+- Cambiar el nombre de asignaturasInformatica a DB
+- Crear los paquetes domain, GUI, database y utils

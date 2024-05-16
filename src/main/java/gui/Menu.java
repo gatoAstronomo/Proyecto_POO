@@ -1,4 +1,7 @@
-package proyect;
+package gui;
+
+import database.DataBase;
+import model.Asignatura;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -118,12 +121,10 @@ public class Menu {
         System.out.printf("Bienvenido %s", alumnosInformatica.buscarAlumnoPorMatricula(matricula).getNombre());
     }
 
-    public static void menu(String[] args) {
+    public static void launch() {
         Scanner scanner = new Scanner(System.in);
         boolean salir = false;
         DataBase asignaturasInformatica = new DataBase();
-        asignaturasInformatica.leerAsignaturas("asignaturasInformatica.csv");
-        asignaturasInformatica.leerAlumnos("alumnosInformatica.csv");
 
         String matricula = pedirMatricula(scanner, asignaturasInformatica);
         binvenida(matricula, asignaturasInformatica);

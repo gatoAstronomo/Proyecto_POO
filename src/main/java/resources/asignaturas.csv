@@ -15,7 +15,7 @@ Probabilidad y Estadistica para Ingenieria,27,5,5,15
 Bases de Datos,28,5,4,21
 Internet y Sistemas Operativos,29,5,6,24
 Algoritmos y Paradigmas,30,5,6,21
-Electivo Formacion General II,31,5,3,0
+Electivo Formacion General II,31,5,3,0,25
 Economia y Finanzas Empresariales,32,5,5,0
 Ciencias de la Computacion,33,6,5,16
 Taller de Bases de Datos,34,6,6,28
@@ -26,7 +26,7 @@ Sistemas Inteligentes,38,7,6,33
 Ingenieria de Datos,39,7,4,28
 Ciberseguridad,40,7,6,29
 Diseno de experiencia de usuario,41,7,6,36
-Electivo de Formacion General III,42,7,30,0
+Electivo de Formacion General III,42,7,30,0,31
 Diseno de Negocios Innovadores,43,7,4,32
 Taller de Ingenieria de Datos,44,8,7,39
 Taller de IoT y Robotica,45,8,5,38
@@ -37,7 +37,7 @@ Electivo de Especialidad I,49,9,4,38
 Electivo de Especialidad II,50,9,4,39
 Direccion de Proyectos,51,9,6,48
 Proyecto de Desarrollo de Software,52,9,7,46
-Electivo de Formacion General IV,53,9,3,0
+Electivo de Formacion General IV,53,9,3,0,42
 Diseno Proyecto de Ingenieria Informatica,54,9,5,37,41
 Electivo de Especialidad III,55,10,4,49
 Investigacion Aplicada en Informatica,56,10,7,44
@@ -46,6 +46,6 @@ Electivo de Especialidad IV,58,10,4,46
 Capstone Multidisciplinario,59,10,5,48
 Actividad de Titulacion,60,11,29,0,15,16,17,18,19,20,21,23,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59
 Ingles Principiante,10,3,0,0
-Ingles Basico,12,4,0,0
-Ingles PreIntermedio,13,6,0,0
-Ingles Intermedio,14,7,0,0
+Ingles Basico,12,4,0,10,0
+Ingles PreIntermedio,13,6,0,12,0
+Ingles Intermedio,14,7,0,13,0

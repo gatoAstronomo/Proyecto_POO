@@ -1,4 +1,4 @@
-package proyect;
+package model;
 
 import java.util.ArrayList;
 
@@ -11,14 +11,14 @@ public class Asignatura{
     ArrayList<Integer> idPrerrequisitos = new ArrayList<Integer>();
     ArrayList<String> nombrePrerrequisitos = new ArrayList<String>();
 
-    Asignatura(String nombre, int numeroId, int nivel, int horasSct, ArrayList<Integer> idPrerrequisitos){
+    public Asignatura(String nombre, int numeroId, int nivel, int horasSct, ArrayList<Integer> idPrerrequisitos){
         this.nombre = nombre;
         this.numeroId = numeroId;
         this.nivel = nivel;
         this.horasSct = horasSct;
         this.idPrerrequisitos = idPrerrequisitos;
     }
-    Asignatura(){
+    public Asignatura(){
 
     }
     public void imprimirAsignatura(){
@@ -46,7 +46,6 @@ public class Asignatura{
             asignatura.imprimirAsignatura();
         }
     }
-    // Getters y Setters
     public String getNombre(){
         return this.nombre;
     }
