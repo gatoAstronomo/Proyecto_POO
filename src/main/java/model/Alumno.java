@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Alumno {
     String nombre;
     String matricula;
-    ArrayList<Integer> idAsignaturasAprobadas = new ArrayList<Integer>();
-    ArrayList<String> nombreAsignaturasAprobadas = new ArrayList<String>();
+    ArrayList<Integer> idAsignaturasAprobadas = new ArrayList<>();
+    ArrayList<String> nombreAsignaturasAprobadas = new ArrayList<>();
 
     public Alumno(String nombre, String matricula){
         this.nombre = nombre;

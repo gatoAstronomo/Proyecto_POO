@@ -51,13 +51,13 @@ public class Menu {
         return scanner.nextLine();
     }
 
-    public static void buscarAsignaturaPorId(DataBase asignaturasInformatica, Scanner scanner) {
+    public static void buscarAsignaturaPorId(DataBase db, Scanner scanner) {
         System.out.print("Ingrese el número de ID de la asignatura a buscar: ");
         int id = obtenerEntero(scanner);
-        Asignatura asignaturaEncontrada = asignaturasInformatica.buscarAsignaturaPorId(id);
+        Asignatura asignaturaEncontrada = db.buscarAsignaturaPorId(id);
         if (asignaturaEncontrada != null) {
             System.out.println("\nAsignatura encontrada:");
-            asignaturaEncontrada.toString();
+            System.out.printf(String.valueOf(asignaturaEncontrada));
         } else {
             System.out.println("\nNo se encontró ninguna asignatura con ese ID.");
         }
@@ -124,7 +124,9 @@ public class Menu {
     public static void launch() {
         Scanner scanner = new Scanner(System.in);
         boolean salir = false;
-        DataBase db = new DataBase();
+        String asignaturaPath = "src/main/java/resources/asignaturas.csv";
+        String alumnoPath = "src/main/java/resources/alumnos.csv";
+        DataBase db = new DataBase(asignaturaPath,alumnoPath);
 
         String matricula = pedirMatricula(scanner, db);
         binvenida(matricula, db);
@@ -144,7 +146,7 @@ public class Menu {
             case 1:
                 limpiarConsola();
                 System.out.println("Asignaturas de la carrera de Ingenieria Civil Informatica");
-                db.imprimirAsignaturas();
+                Asignatura.imprimirAsignaturas(db.getAsignaturas());
                 break;
             case 2:
                 limpiarConsola();

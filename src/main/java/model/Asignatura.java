@@ -8,15 +8,15 @@ public class Asignatura{
     int numeroId;
     int nivel;
     int horasSct;
-    ArrayList<Integer> idPrerrequisitos = new ArrayList<Integer>();
-    ArrayList<String> nombrePrerrequisitos = new ArrayList<String>();
+    ArrayList<Integer> idRequisitos = new ArrayList<Integer>();
+    ArrayList<String> nombreRequisitos = new ArrayList<String>();
 
-    public Asignatura(String nombre, int numeroId, int nivel, int horasSct, ArrayList<Integer> idPrerrequisitos){
+    public Asignatura(String nombre, int numeroId, int nivel, int horasSct, ArrayList<Integer> idRequisitos){
         this.nombre = nombre;
         this.numeroId = numeroId;
         this.nivel = nivel;
         this.horasSct = horasSct;
-        this.idPrerrequisitos = idPrerrequisitos;
+        this.idRequisitos = idRequisitos;
     }
     public Asignatura(){
 
@@ -29,19 +29,19 @@ public class Asignatura{
         sb.append("Nivel: ").append(nivel).append("\n");
         sb.append("Horas SCT: ").append(horasSct).append("\n");
         sb.append("Prerrequisitos: ");
-        if (idPrerrequisitos != null && !idPrerrequisitos.isEmpty()) {
-            sb.append(idPrerrequisitos.get(0));
-            for (int i = 1; i < idPrerrequisitos.size(); i++) {
-                sb.append(", ").append(idPrerrequisitos.get(i));
+        if (idRequisitos != null && !idRequisitos.isEmpty()) {
+            sb.append(idRequisitos.get(0));
+            for (int i = 1; i < idRequisitos.size(); i++) {
+                sb.append(", ").append(idRequisitos.get(i));
             }
         }
         sb.append("\n");
         return sb.toString();
     }
-    public void imprimirPrerrequisitosNombre(){
-        System.out.print("Prerrequisitos: " + this.nombrePrerrequisitos.get(0));
-        for(int i = 1; i < this.nombrePrerrequisitos.size(); i++){
-            System.out.print(", " + this.nombrePrerrequisitos.get(i));
+    public void imprimirRequisitosNombre(){
+        System.out.print("Prerrequisitos: " + this.nombreRequisitos.get(0));
+        for(int i = 1; i < this.nombreRequisitos.size(); i++){
+            System.out.print(", " + this.nombreRequisitos.get(i));
         }
     }
     public static void imprimirAsignaturas(ArrayList<Asignatura> asignaturas){
@@ -73,24 +73,24 @@ public class Asignatura{
     public void setHorasSct(int horasSct){
         this.horasSct = horasSct;
     }
-    public ArrayList<Integer> getIdPrerrequisitos(){
-        return this.idPrerrequisitos;
+    public ArrayList<Integer> getIdRequisitos(){
+        return this.idRequisitos;
     }
 
-    public void setIdPrerrequisitos(ArrayList<Integer> idPrerrequisitos){
-        this.idPrerrequisitos = idPrerrequisitos;
+    public void setIdRequisitos(ArrayList<Integer> idRequisitos){
+        this.idRequisitos = idRequisitos;
     }
     public void addIdPrerrequisito(int idPrerrequisito){
-        this.idPrerrequisitos.add(idPrerrequisito);
+        this.idRequisitos.add(idPrerrequisito);
     }
     public ArrayList<String> getNombrePrerrequisitos(){
-        return this.nombrePrerrequisitos;
+        return this.nombreRequisitos;
     }
     public void setNombrePrerrequisitos(ArrayList<String> nombrePrerrequisitos){
-        this.nombrePrerrequisitos = nombrePrerrequisitos;
+        this.nombreRequisitos = nombrePrerrequisitos;
     }
     public void addNombrePrerrequisito(String nombrePrerrequisito){
-        this.nombrePrerrequisitos.add(nombrePrerrequisito);
+        this.nombreRequisitos.add(nombrePrerrequisito);
     }
     
 }   
