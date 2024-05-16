@@ -3,7 +3,6 @@ package database;
 import model.Alumno;
 import model.Asignatura;
 
-import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.io.FileReader;
 import java.io.IOException;

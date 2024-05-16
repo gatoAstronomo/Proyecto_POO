@@ -63,10 +63,10 @@ public class Menu {
         }
     }
 
-    public static void buscarAsignaturaPorNombre(DataBase asignaturasInformatica, Scanner scanner){
+    public static void buscarAsignaturaPorNombre(DataBase db, Scanner scanner){
         System.out.print("Ingrese el nombre de la asignatura a buscar: ");
         String nombre = obtenerString(scanner);
-        Asignatura asignaturaEncontrada = asignaturasInformatica.buscarAsignaturaPorNombre(nombre);
+        Asignatura asignaturaEncontrada = db.buscarAsignaturaPorNombre(nombre);
         
         if (asignaturaEncontrada != null) {
             System.out.println("\nAsignatura encontrada:");
@@ -76,10 +76,10 @@ public class Menu {
         }
     }
 
-    public static void buscarCoincidenciasAsignaturaPorNombre(DataBase asignaturasInformatica, Scanner scanner){
+    public static void buscarCoincidenciasAsignaturaPorNombre(DataBase db, Scanner scanner){
         System.out.print("Ingrese el nombre de la asignatura a buscar: ");
         String nombre = obtenerString(scanner);
-        ArrayList<Asignatura> asignaturasEncontradas = asignaturasInformatica.buscarCoincidenciasPorNombre(nombre);
+        ArrayList<Asignatura> asignaturasEncontradas = db.buscarCoincidenciasPorNombre(nombre);
 
         if (asignaturasEncontradas != null) {
             System.out.println("\nAsignaturas encontradas:");
@@ -89,14 +89,14 @@ public class Menu {
         }
     }
 
-    public static String pedirMatricula(Scanner scanner, DataBase database){
+    public static String pedirMatricula(Scanner scanner, DataBase db){
         System.out.println("Bienvenido a UCM ingrese su matricula:");
         while (true) {
             String matricula = obtenerString(scanner).toLowerCase();
 
-            if (esMatriculaValida(matricula) && database.esAlumno(matricula)) {
+            if (esMatriculaValida(matricula) && db.esAlumno(matricula)) {
                 return matricula;
-            }else if(esMatriculaValida(matricula) && !database.esAlumno(matricula)){
+            }else if(esMatriculaValida(matricula) && !db.esAlumno(matricula)){
                 System.out.println("Usted no es alumno de la Universidad de la Frontera");
                 System.out.println("Saliendo del programa.......");
                 System.exit(0);
@@ -117,21 +117,21 @@ public class Menu {
         return false;
     }
 
-    public static void  binvenida(String matricula, DataBase alumnosInformatica){
-        System.out.printf("Bienvenido %s", alumnosInformatica.buscarAlumnoPorMatricula(matricula).getNombre());
+    public static void  binvenida(String matricula, DataBase db){
+        System.out.printf("Bienvenido %s", db.buscarAlumnoPorMatricula(matricula).getNombre());
     }
 
     public static void launch() {
         Scanner scanner = new Scanner(System.in);
         boolean salir = false;
-        DataBase asignaturasInformatica = new DataBase();
+        DataBase db = new DataBase();
 
-        String matricula = pedirMatricula(scanner, asignaturasInformatica);
-        binvenida(matricula, asignaturasInformatica);
+        String matricula = pedirMatricula(scanner, db);
+        binvenida(matricula, db);
         while (!salir) {
             imprimirMenu();
             int opcion = obtenerEntero(scanner);
-            procesarOpcion(opcion, asignaturasInformatica, matricula, scanner);
+            procesarOpcion(opcion, db, matricula, scanner);
             if (opcion == 5) {
                 salir = true;
             }
@@ -139,24 +139,24 @@ public class Menu {
         scanner.close();
     }
 
-    public static void procesarOpcion(int opcion, DataBase asignaturasInformatica, String matricula, Scanner scanner) {
+    public static void procesarOpcion(int opcion, DataBase db, String matricula, Scanner scanner) {
         switch (opcion) {
             case 1:
                 limpiarConsola();
                 System.out.println("Asignaturas de la carrera de Ingenieria Civil Informatica");
-                asignaturasInformatica.imprimirAsignaturas();
+                db.imprimirAsignaturas();
                 break;
             case 2:
                 limpiarConsola();
-                buscarAsignaturaPorId(asignaturasInformatica, scanner);
+                buscarAsignaturaPorId(db, scanner);
                 break;
             case 3:
                 limpiarConsola();
-                buscarCoincidenciasAsignaturaPorNombre(asignaturasInformatica, scanner);
+                buscarCoincidenciasAsignaturaPorNombre(db, scanner);
                 break;
             case 4:
                 limpiarConsola();
-                Asignatura.imprimirAsignaturas(asignaturasInformatica.ramosAElegir(matricula));
+                Asignatura.imprimirAsignaturas(db.ramosAElegir(matricula));
                 break;
             case 5:
                 limpiarConsola();
