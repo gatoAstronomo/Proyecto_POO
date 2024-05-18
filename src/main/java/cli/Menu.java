@@ -2,7 +2,7 @@ package cli;
 
 import database.DataBase;
 import domain.AsignaturasManager;
-import model.Asignatura;
+import domain.Asignatura;
 
 import java.util.ArrayList;
 import java.util.Scanner;

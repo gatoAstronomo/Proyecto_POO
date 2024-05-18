@@ -1,10 +1,9 @@
 package database;
 
-import database.DataBase;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import model.Asignatura;
+import domain.Asignatura;
 
 
 import static org.junit.jupiter.api.Assertions.*;

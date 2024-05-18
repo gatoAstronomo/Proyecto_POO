@@ -1,7 +1,7 @@
 package database;
 
-import model.Alumno;
-import model.Asignatura;
+import domain.Alumno;
+import domain.Asignatura;
 
 import java.util.ArrayList;
 
