@@ -4,7 +4,6 @@ import database.DataBase;
 import domain.AsignaturasManager;
 import domain.Asignatura;
 
-import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -15,6 +14,7 @@ public class Menu {
     String alumnoPath = "src/main/java/resources/alumnos.csv";
     DataBase db = new DataBase(asignaturaPath,alumnoPath);
     Scanner scanner;
+    boolean salir = false;
 
     public Menu(){
         scanner = new Scanner(System.in);
@@ -51,6 +51,10 @@ public class Menu {
     public static int obtenerEntero(Scanner scanner){
         return Integer.parseInt(scanner.nextLine());
     }
+    public static String obtenerString(Scanner scanner){
+        return scanner.nextLine();
+    }
+
     public static int pedirEntero(Scanner scanner){
         while(true){
             try{
@@ -59,9 +63,6 @@ public class Menu {
                 System.out.println("Ingrese un entero valido");
             }
         }
-    }
-    public static String obtenerString(Scanner scanner){
-        return scanner.nextLine();
     }
     public static String pedirMatricula(Scanner scanner, DataBase db){
         System.out.println("Bienvenido a UCM ingrese su matricula:");
@@ -79,27 +80,33 @@ public class Menu {
             System.out.println("Ingrese una matricula valida");
         }
     }
-
     public static int pedirIdAsignatura(Scanner scanner){
         System.out.print("Ingrese el número de ID de la asignatura a buscar: ");
         return pedirEntero(scanner);
     }
-    public static void buscarAsignaturaPorId(DataBase db, Scanner scanner) {
+    public static String pedirNombreAsignatura(Scanner scanner){
+        System.out.print("Ingrese el nombre de la asignatura a buscar: ");
+        return obtenerString(scanner);
+    }
+
+    public static int imprimirListaAsignaturas(DataBase db){
+        System.out.println("Asignaturas de la carrera de Ingenieria Civil Informatica");
+        AsignaturasManager.imprimir(db.getAsignaturas());
+        return 0;
+    }
+    public static int buscarAsignaturaPorId(DataBase db, Scanner scanner) {
         int id = pedirIdAsignatura(scanner);
         Asignatura asignatura = db.buscarAsignaturaPorId(id);
         if (asignatura != null) {
             System.out.println("\nAsignatura encontrada:");
             System.out.println(asignatura);
+            return 0;
         } else {
             System.out.println("\nNo se encontró ninguna asignatura con ese ID.");
+            return -1;
         }
     }
-
-    public static String pedirNombreAsignatura(Scanner scanner){
-        System.out.print("Ingrese el nombre de la asignatura a buscar: ");
-        return obtenerString(scanner);
-    }
-    public static void buscarCoincidenciasAsignaturaPorNombre(DataBase db, Scanner scanner){
+    public static int buscarCoincidenciasAsignaturaPorNombre(DataBase db, Scanner scanner){
         System.out.print("Ingrese el nombre de la asignatura a buscar: ");
         String nombre = obtenerString(scanner);
         ArrayList<Asignatura> listaAsignaturas = db.buscarCoincidenciasPorNombre(nombre);
@@ -107,11 +114,23 @@ public class Menu {
         if (!listaAsignaturas.isEmpty()) {
             System.out.println("\nAsignaturas encontradas:");
             AsignaturasManager.imprimir(listaAsignaturas);
+            return 0;
         } else {
             System.out.println("\nNo se encontró ninguna asignatura con ese Nombre.");
+            return -1;
         }
     }
-    public static void buscarAsignaturaPorNombre(DataBase db, Scanner scanner){
+    public static int imprimirRamosAElegir(DataBase db, String matricula){
+        ArrayList<Asignatura> ramosAElegir = db.ramosAElegir(matricula);
+        if(ramosAElegir != null) {
+            System.out.println("Ramos a elegir:");
+            AsignaturasManager.imprimir(ramosAElegir);
+        }else{
+            System.out.println("No hay ramos a elegir");
+        }
+        return 0;
+    }
+    public static int buscarAsignaturaPorNombre(DataBase db, Scanner scanner){
         System.out.print("Ingrese el nombre de la asignatura a buscar: ");
         String nombre = obtenerString(scanner);
         Asignatura asignaturaEncontrada = db.buscarAsignaturaPorNombre(nombre);
@@ -119,43 +138,45 @@ public class Menu {
         if (asignaturaEncontrada != null) {
             System.out.println("\nAsignatura encontrada:");
             System.out.println(asignaturaEncontrada);
+            return 0;
         } else {
             System.out.println("\nNo se encontró ninguna asignatura con ese Nombre.");
+            return -1;
         }
     }
-
+    public static int exit(){
+        System.out.println("Saliendo del programa...");
+        return 1;
+    }
+    public static int defaultOption(){
+        System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
+        return -1;
+    }
 
     public static int procesarOption(int option, DataBase db, String matricula, Scanner scanner) {
         switch (option) {
             case 1:
                 limpiarConsola();
-                System.out.println("Asignaturas de la carrera de Ingenieria Civil Informatica");
-                AsignaturasManager.imprimir(db.getAsignaturas());
-                return 0;
+                return imprimirListaAsignaturas(db);
             case 2:
                 limpiarConsola();
-                buscarAsignaturaPorId(db, scanner);
-                return 0;
+                return buscarAsignaturaPorId(db, scanner);
             case 3:
                 limpiarConsola();
-                buscarCoincidenciasAsignaturaPorNombre(db, scanner);
-                return 0;
+                return buscarCoincidenciasAsignaturaPorNombre(db, scanner);
             case 4:
                 limpiarConsola();
-                AsignaturasManager.imprimir(db.ramosAElegir(matricula));
-                return 0;
+                return imprimirRamosAElegir(db, matricula);
             case 5:
                 limpiarConsola();
-                System.out.println("Saliendo del programa...");
-                return 1;
+                return exit();
             default:
                 limpiarConsola();
-                System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
-                return -1;
+                return defaultOption();
         }
     }
     public void launch() {
-        boolean salir = false;
+
         String matricula = pedirMatricula(scanner, db);
         bienvenida(matricula, db);
         while (!salir) {
