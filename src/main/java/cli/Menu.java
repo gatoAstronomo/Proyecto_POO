@@ -13,28 +13,30 @@ public class Menu {
     String asignaturaPath = "src/main/java/resources/asignaturas.csv";
     String alumnoPath = "src/main/java/resources/alumnos.csv";
     DataBase db = new DataBase(asignaturaPath,alumnoPath);
+    String matricula;
     Scanner scanner;
     boolean salir = false;
 
     public Menu(){
         scanner = new Scanner(System.in);
+        matricula = pedirMatricula(scanner, db);
     }
 
     public static void limpiarConsola() {
         try {
             String osName = System.getProperty("os.name").toLowerCase();
-            ProcessBuilder pb;
             if (osName.contains("windows")) {
-                pb = new ProcessBuilder("cmd", "/c", "cls");
+                new ProcessBuilder("cmd", "/c", "cls");
+
             } else {
-                pb = new ProcessBuilder("clear");
+                new ProcessBuilder("clear");
             }
-            pb.inheritIO();
-            pb.start().waitFor();
+
         } catch (Exception e) {
             System.out.println("Error al limpiar la consola: " + e.getMessage());
         }
     }
+
     public static void bienvenida(String matricula, DataBase db){
         System.out.printf("Bienvenido %s", db.buscarAlumnoPorMatricula(matricula).getNombre());
     }
@@ -89,12 +91,15 @@ public class Menu {
         return obtenerString(scanner);
     }
 
+    /* Cada opción del menu devuelve un status, 0 es correcto, salir es 1, para las opciones
+    de búsqueda: no encontrado es -1 */
     public static int imprimirListaAsignaturas(DataBase db){
         System.out.println("Asignaturas de la carrera de Ingenieria Civil Informatica");
         AsignaturasManager.imprimir(db.getAsignaturas());
         return 0;
     }
     public static int buscarAsignaturaPorId(DataBase db, Scanner scanner) {
+        limpiarConsola();
         int id = pedirIdAsignatura(scanner);
         Asignatura asignatura = db.buscarAsignaturaPorId(id);
         if (asignatura != null) {
@@ -107,6 +112,7 @@ public class Menu {
         }
     }
     public static int buscarCoincidenciasAsignaturaPorNombre(DataBase db, Scanner scanner){
+        limpiarConsola();
         System.out.print("Ingrese el nombre de la asignatura a buscar: ");
         String nombre = obtenerString(scanner);
         ArrayList<Asignatura> listaAsignaturas = db.buscarCoincidenciasPorNombre(nombre);
@@ -121,6 +127,7 @@ public class Menu {
         }
     }
     public static int imprimirRamosAElegir(DataBase db, String matricula){
+        limpiarConsola();
         ArrayList<Asignatura> ramosAElegir = db.ramosAElegir(matricula);
         if(ramosAElegir != null) {
             System.out.println("Ramos a elegir:");
@@ -131,6 +138,7 @@ public class Menu {
         return 0;
     }
     public static int buscarAsignaturaPorNombre(DataBase db, Scanner scanner){
+        limpiarConsola();
         System.out.print("Ingrese el nombre de la asignatura a buscar: ");
         String nombre = obtenerString(scanner);
         Asignatura asignaturaEncontrada = db.buscarAsignaturaPorNombre(nombre);
@@ -145,6 +153,7 @@ public class Menu {
         }
     }
     public static int exit(){
+        limpiarConsola();
         System.out.println("Saliendo del programa...");
         return 1;
     }
@@ -154,39 +163,26 @@ public class Menu {
     }
 
     public static int procesarOption(int option, DataBase db, String matricula, Scanner scanner) {
-        switch (option) {
-            case 1:
-                limpiarConsola();
-                return imprimirListaAsignaturas(db);
-            case 2:
-                limpiarConsola();
-                return buscarAsignaturaPorId(db, scanner);
-            case 3:
-                limpiarConsola();
-                return buscarCoincidenciasAsignaturaPorNombre(db, scanner);
-            case 4:
-                limpiarConsola();
-                return imprimirRamosAElegir(db, matricula);
-            case 5:
-                limpiarConsola();
-                return exit();
-            default:
-                limpiarConsola();
-                return defaultOption();
-        }
+        return switch (option) {
+            case 1 -> imprimirListaAsignaturas(db);
+            case 2 -> buscarAsignaturaPorId(db, scanner);
+            case 3 -> buscarCoincidenciasAsignaturaPorNombre(db, scanner);
+            case 4 -> imprimirRamosAElegir(db, matricula);
+            case 5 -> exit();
+            default -> defaultOption();
+        };
     }
     public void launch() {
-
-        String matricula = pedirMatricula(scanner, db);
         bienvenida(matricula, db);
-        while (!salir) {
+
+        // Se mantiene el loop hasta que el usuario decida salir
+        do {
             imprimirMenu();
             int option = pedirEntero(scanner);
-
-            if (procesarOption(option, db, matricula, scanner) == 1) {
-                salir = true;
-            }
+            if (procesarOption(option, db, matricula, scanner) == 1) {salir = true;}
         }
+        while (!salir);
+
         scanner.close();
     }
 
