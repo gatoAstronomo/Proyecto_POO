@@ -4,9 +4,6 @@ import model.Alumno;
 import model.Asignatura;
 
 import java.util.ArrayList;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.BufferedReader;
 
 public class DataBase extends DataLoader{
 
@@ -25,8 +22,10 @@ public class DataBase extends DataLoader{
         return null;
     }
     public ArrayList<Asignatura> buscarCoincidenciasPorNombre(String nombreBuscar) {
-        ArrayList<String> palabrasClave = preprocesarPalabrasClave(nombreBuscar);
+        ArrayList<String> palabrasClave = preprocessPalabrasClave(nombreBuscar);
         ArrayList<Asignatura> coincidencias = new ArrayList<>();
+
+        if(palabrasClave.isEmpty()) return coincidencias;
 
         for (Asignatura asignatura : this.asignaturas) {
             String nombreAsignatura = asignatura.getNombre().toLowerCase().replaceAll("\\s+", "");
@@ -37,7 +36,7 @@ public class DataBase extends DataLoader{
 
         return coincidencias;
     }
-    private ArrayList<String> preprocesarPalabrasClave(String nombreBuscar) {
+    private ArrayList<String> preprocessPalabrasClave(String nombreBuscar) {
         String[] palabras = nombreBuscar.split("\\s+");
         ArrayList<String> palabrasClave = new ArrayList<>();
         for (String palabra : palabras) {
@@ -65,7 +64,7 @@ public class DataBase extends DataLoader{
     public ArrayList<Asignatura> ramosAElegir(String matricula){
         Alumno alumno = buscarAlumnoPorMatricula(matricula);
         ArrayList<Integer> idAsignaturasAprobadas = alumno.getIdAsignaturasAprobadas();
-        ArrayList<Asignatura> asignaturasAElegir = new ArrayList<Asignatura>();
+        ArrayList<Asignatura> asignaturasAElegir = new ArrayList<>();
 
         for(Asignatura asignatura: asignaturas){
             if (!idAsignaturasAprobadas.contains(asignatura.getNumeroId()) && cumpleRequisitos(alumno, asignatura)) {
@@ -90,7 +89,4 @@ public class DataBase extends DataLoader{
         return false;
     }
 
-    public ArrayList<Asignatura> getAsignaturas() {
-        return asignaturas;
-    }
 }

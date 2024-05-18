@@ -8,8 +8,8 @@ public class Asignatura{
     int numeroId;
     int nivel;
     int horasSct;
-    ArrayList<Integer> idRequisitos = new ArrayList<Integer>();
-    ArrayList<String> nombreRequisitos = new ArrayList<String>();
+    ArrayList<Integer> idRequisitos = new ArrayList<>();
+    ArrayList<String> nombreRequisitos = new ArrayList<>();
 
     public Asignatura(String nombre, int numeroId, int nivel, int horasSct, ArrayList<Integer> idRequisitos){
         this.nombre = nombre;
@@ -21,34 +21,14 @@ public class Asignatura{
     public Asignatura(){
 
     }
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Nombre: ").append(nombre).append("\n");
-        sb.append("Número ID: ").append(numeroId).append("\n");
-        sb.append("Nivel: ").append(nivel).append("\n");
-        sb.append("Horas SCT: ").append(horasSct).append("\n");
-        sb.append("Prerrequisitos: ");
-        if (idRequisitos != null && !idRequisitos.isEmpty()) {
-            sb.append(idRequisitos.get(0));
-            for (int i = 1; i < idRequisitos.size(); i++) {
-                sb.append(", ").append(idRequisitos.get(i));
-            }
-        }
-        sb.append("\n");
-        return sb.toString();
-    }
-    public void imprimirRequisitosNombre(){
+
+    public void imprimirNombreRequisitos(){
         System.out.print("Prerrequisitos: " + this.nombreRequisitos.get(0));
         for(int i = 1; i < this.nombreRequisitos.size(); i++){
             System.out.print(", " + this.nombreRequisitos.get(i));
         }
     }
-    public static void imprimirAsignaturas(ArrayList<Asignatura> asignaturas){
-        for (Asignatura asignatura : asignaturas) {
-            System.out.println(asignatura);
-        }
-    }
+
     public String getNombre(){
         return this.nombre;
     }
@@ -92,5 +72,22 @@ public class Asignatura{
     public void addNombrePrerrequisito(String nombrePrerrequisito){
         this.nombreRequisitos.add(nombrePrerrequisito);
     }
-    
+
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Nombre: ").append(nombre).append("\n");
+        sb.append("Número ID: ").append(numeroId).append("\n");
+        sb.append("Nivel: ").append(nivel).append("\n");
+        sb.append("Horas SCT: ").append(horasSct).append("\n");
+        sb.append("Prerrequisitos: ");
+        if (nombreRequisitos != null && !nombreRequisitos.isEmpty()) {
+            sb.append(nombreRequisitos.get(0));
+            for (int i = 1; i < nombreRequisitos.size(); i++) {
+                sb.append(", ").append(nombreRequisitos.get(i));
+            }
+        }
+        sb.append("\n");
+        return sb.toString();
+    }
 }   

@@ -1,4 +1,4 @@
-package proyect;
+package database;
 
 import database.DataBase;
 import org.junit.jupiter.api.AfterEach;
@@ -20,7 +20,7 @@ class DataBaseTest {
 
     @Test
     void buscarAsignaturaPorId() {
-        DataBase db = new DataBase("/src/main/java/resources/asignaturas.csv",null);
+        DataBase db = new DataBase("/src/main/java/resources/asignaturas.csv","/src/main/java/resources/alumnos.csv");
         Asignatura asignatura = db.buscarAsignaturaPorId(15);
         assertEquals(asignatura.getNombre(), "Calculo Multivariable");
 
@@ -28,20 +28,20 @@ class DataBaseTest {
 
     @Test
     void buscarAsignaturaPorNombre() {
-        DataBase db = new DataBase("/src/main/java/resources/asignaturas.csv",null);
+        DataBase db = new DataBase("/src/main/java/resources/asignaturas.csv","/src/main/java/resources/alumnos.csv");
         Asignatura asignatura = db.buscarAsignaturaPorNombre("Calculo Multivariable");
         assertEquals(asignatura.getNumeroId(), 15);
     }
 
     @Test
     void buscarCoincidenciasPorNombre() {
-        DataBase db = new DataBase("/src/main/java/resources/asignaturas.csv",null);
+        DataBase db = new DataBase("/src/main/java/resources/asignaturas.csv","/src/main/java/resources/alumnos.csv");
         assertEquals(db.buscarCoincidenciasPorNombre("Calculo Multivariable").size(), 1);
     }
 
     @Test
     void buscarCoincidenciasPorNombre2() {
-        DataBase db = new DataBase("/src/main/java/resources/asignaturas.csv",null);
+        DataBase db = new DataBase("/src/main/java/resources/asignaturas.csv","/src/main/java/resources/alumnos.csv");
         assertNotEquals(db.buscarCoincidenciasPorNombre("Calculo").size(), 2);
     }
 

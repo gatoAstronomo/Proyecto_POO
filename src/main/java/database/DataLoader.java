@@ -105,9 +105,9 @@ public class DataLoader {
     }
     private ArrayList<String> asignarNombreAprobadas(Alumno alumno){
         ArrayList<Integer> idAsignaturasAprobadas = alumno.getIdAsignaturasAprobadas();
-        ArrayList<String> nombreAprobadas = new ArrayList<String>();
-        for(int i = 0; i < idAsignaturasAprobadas.size(); i++){
-            Asignatura asignatura = buscarAsignaturaPorId(idAsignaturasAprobadas.get(i));
+        ArrayList<String> nombreAprobadas = new ArrayList<>();
+        for (Integer idAsignaturasAprobada : idAsignaturasAprobadas) {
+            Asignatura asignatura = buscarAsignaturaPorId(idAsignaturasAprobada);
             String prerrequisito = asignatura.getNombre();
             nombreAprobadas.add(prerrequisito);
         }
