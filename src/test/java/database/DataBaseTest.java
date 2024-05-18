@@ -26,13 +26,6 @@ class DataBaseTest {
     }
 
     @Test
-    void buscarAsignaturaPorNombre() {
-        DataBase db = new DataBase("/src/main/java/resources/asignaturas.csv","/src/main/java/resources/alumnos.csv");
-        Asignatura asignatura = db.buscarAsignaturaPorNombre("Calculo Multivariable");
-        assertEquals(asignatura.getNumeroId(), 15);
-    }
-
-    @Test
     void buscarCoincidenciasPorNombre() {
         DataBase db = new DataBase("/src/main/java/resources/asignaturas.csv","/src/main/java/resources/alumnos.csv");
         assertEquals(db.buscarCoincidenciasPorNombre("Calculo Multivariable").size(), 1);

@@ -86,10 +86,6 @@ public class Menu {
         System.out.print("Ingrese el número de ID de la asignatura a buscar: ");
         return pedirEntero(scanner);
     }
-    public static String pedirNombreAsignatura(Scanner scanner){
-        System.out.print("Ingrese el nombre de la asignatura a buscar: ");
-        return obtenerString(scanner);
-    }
 
     /* Cada opción del menu devuelve un status, 0 es correcto, salir es 1, para las opciones
     de búsqueda: no encontrado es -1 */
@@ -136,21 +132,6 @@ public class Menu {
             System.out.println("No hay ramos a elegir");
         }
         return 0;
-    }
-    public static int buscarAsignaturaPorNombre(DataBase db, Scanner scanner){
-        limpiarConsola();
-        System.out.print("Ingrese el nombre de la asignatura a buscar: ");
-        String nombre = obtenerString(scanner);
-        Asignatura asignaturaEncontrada = db.buscarAsignaturaPorNombre(nombre);
-
-        if (asignaturaEncontrada != null) {
-            System.out.println("\nAsignatura encontrada:");
-            System.out.println(asignaturaEncontrada);
-            return 0;
-        } else {
-            System.out.println("\nNo se encontró ninguna asignatura con ese Nombre.");
-            return -1;
-        }
     }
     public static int exit(){
         limpiarConsola();

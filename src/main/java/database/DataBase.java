@@ -11,16 +11,6 @@ public class DataBase extends DataLoader{
         super(asignaturasPath, alumnosPath);
     }
 
-    public Asignatura buscarAsignaturaPorNombre(String nombreBuscar) {
-        for (Asignatura asignatura : this.asignaturas) {
-            String nombreAsignatura = asignatura.getNombre().toLowerCase().replaceAll("\\s+", "");
-            String nombreBuscarFormated = nombreBuscar.toLowerCase().replaceAll("\\s+", "");
-            if (nombreAsignatura.contentEquals(nombreBuscarFormated)){
-                return asignatura;
-            }
-        }
-        return null;
-    }
     public ArrayList<Asignatura> buscarCoincidenciasPorNombre(String nombreBuscar) {
         ArrayList<String> palabrasClave = preprocessPalabrasClave(nombreBuscar);
         ArrayList<Asignatura> coincidencias = new ArrayList<>();

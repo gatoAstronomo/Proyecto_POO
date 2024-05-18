@@ -18,4 +18,7 @@ Opciones principales a implementar
 - Ver por medio de una GUI el avance curricular de un alumno
 - Ver por medio de una GUI el plan de estudios que ha seguido un alumno
 
+- Ver los ramos aprobados de un alumnos
+- Agregar un ramo a un alumno
+- Eliminar un ramo a un alumno
 - 
