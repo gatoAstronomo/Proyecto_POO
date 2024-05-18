@@ -4,14 +4,21 @@ import database.DataBase;
 import domain.AsignaturasManager;
 import domain.Asignatura;
 
+import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
+import static domain.MatriculaManager.esMatriculaValida;
 
 public class Menu {
     String asignaturaPath = "src/main/java/resources/asignaturas.csv";
     String alumnoPath = "src/main/java/resources/alumnos.csv";
+    DataBase db = new DataBase(asignaturaPath,alumnoPath);
+    Scanner scanner;
+
+    public Menu(){
+        scanner = new Scanner(System.in);
+    }
 
     public static void limpiarConsola() {
         try {
@@ -72,15 +79,6 @@ public class Menu {
             System.out.println("Ingrese una matricula valida");
         }
     }
-    public static boolean esMatriculaValida(String matricula){
-        String regex = "^(\\d{8,9})[0-9kK](\\d{2})$";
-
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(matricula);
-
-        return matcher.matches();
-    }
-
 
     public static int pedirIdAsignatura(Scanner scanner){
         System.out.print("Ingrese el número de ID de la asignatura a buscar: ");
@@ -157,11 +155,7 @@ public class Menu {
         }
     }
     public void launch() {
-        Scanner scanner = new Scanner(System.in);
         boolean salir = false;
-
-        DataBase db = new DataBase(asignaturaPath,alumnoPath);
-
         String matricula = pedirMatricula(scanner, db);
         bienvenida(matricula, db);
         while (!salir) {
