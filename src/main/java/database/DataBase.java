@@ -51,20 +51,18 @@ public class DataBase extends DataLoader{
         }
         return null;
     }
-    public ArrayList<Asignatura> ramosAElegir(String matricula){
-        Alumno alumno = buscarAlumnoPorMatricula(matricula);
-        ArrayList<Integer> idAsignaturasAprobadas = alumno.getIdAsignaturasAprobadas();
+    public ArrayList<Asignatura> asignaturasAElegir(Alumno alumno){
         ArrayList<Asignatura> asignaturasAElegir = new ArrayList<>();
 
         for(Asignatura asignatura: asignaturas){
-            if (!idAsignaturasAprobadas.contains(asignatura.getNumeroId()) && cumpleRequisitos(alumno, asignatura)) {
+            if (puedeTomarAsignatura(alumno, asignatura)) {
                     asignaturasAElegir.add(asignatura);
                 }
             }
 
         return asignaturasAElegir;
     }
-    public static boolean cumpleRequisitos(Alumno alumno, Asignatura asignatura) {
+    private static boolean cumpleRequisitos(Alumno alumno, Asignatura asignatura) {
         for (Integer i : asignatura.getIdRequisitos()) {
             if (!alumno.getIdAsignaturasAprobadas().contains(i)) {
                 return false;
@@ -72,10 +70,19 @@ public class DataBase extends DataLoader{
         }
         return true;
     }
+    private static boolean esAsignaturaAprobada(Alumno alumno, Asignatura asignatura){
+        return alumno.getIdAsignaturasAprobadas().contains(asignatura.getNumeroId());
+    }
+    private static boolean puedeTomarAsignatura(Alumno alumno, Asignatura asignatura){
+        return !esAsignaturaAprobada(alumno, asignatura) && cumpleRequisitos(alumno, asignatura);
+    }
+    public boolean esAlumno(Alumno alumno){
+        return this.alumnos.contains(alumno);
+    }
     public boolean esAlumno(String matricula){
-        for(Alumno alumno :this.alumnos)
-            if(alumno.getMatricula().contentEquals(matricula))
-                return true;
+        for(Alumno alumno : this.alumnos){
+            if(alumno.getMatricula().equalsIgnoreCase(matricula)) return true;
+        }
         return false;
     }
 

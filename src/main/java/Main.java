@@ -1,8 +1,9 @@
-import cli.Menu;
+import cli.UniversityCourseManager;
+import cli.UniversityCourseManager;
 
 public class Main {
     public static void main(String[] args){
-        Menu menu = new Menu();
-        menu.launch();
+        UniversityCourseManager program = new UniversityCourseManager();
+        program.launch();
     }
 }

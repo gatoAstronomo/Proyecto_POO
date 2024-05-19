@@ -18,11 +18,11 @@ public class DataLoader {
     }
 
     public void cargarDatos(String asignaturaPath, String alumnoPath){
-        leerAsignaturas(asignaturaPath);
-        leerAlumnos(alumnoPath);
+        cargarAsignaturas(asignaturaPath);
+        cargarAlumnos(alumnoPath);
     }
 
-    private void leerAsignaturas(String archivo) {
+    private void cargarAsignaturas(String archivo) {
         try {
             BufferedReader br = new BufferedReader(new FileReader(archivo));
             String linea;
@@ -75,7 +75,7 @@ public class DataLoader {
         return null;
     }
 
-    private void leerAlumnos(String archivo){
+    private void cargarAlumnos(String archivo){
         try {
             BufferedReader br = new BufferedReader(new FileReader(archivo));
             String linea;
