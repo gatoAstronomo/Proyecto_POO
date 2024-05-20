@@ -7,13 +7,17 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DataLoader {
 
-    protected ArrayList<Asignatura> asignaturas = new ArrayList<>();
-    protected ArrayList<Alumno> alumnos = new ArrayList<>();
+    protected Map<Integer, Asignatura> asignaturas;
+    protected Map<String, Alumno> alumnos;
 
     public DataLoader(String asignaturasPath, String alumnosPath){
+        asignaturas = new HashMap<>();
+        alumnos = new HashMap<>();
         cargarDatos(asignaturasPath, alumnosPath);
     }
 
@@ -27,7 +31,7 @@ public class DataLoader {
             BufferedReader br = new BufferedReader(new FileReader(archivo));
             String linea;
             while ((linea = br.readLine()) != null) {
-                procesarLinea(linea);
+                procesarLineaAsignatura(linea);
             }
             br.close();
         } catch (IOException e) {
@@ -38,41 +42,38 @@ public class DataLoader {
         cargarNombrePrerrequisitosAsignatura();
     }
     private void cargarNombrePrerrequisitosAsignatura(){
-        for(Asignatura ramo : this.asignaturas){
-            ramo.setNombrePrerrequisitos(asignarNombrePrerrequisitos(ramo));
+        for(Asignatura ramo : this.asignaturas.values().stream().toList()){
+            ramo.setNombrePrerrequisitos(getNombrePrerrequisitos(ramo));
         }
     }
-    private void procesarLinea(String linea) {
+    private void procesarLineaAsignatura(String linea) {
         String[] datos = linea.split(",");
 
-        Asignatura ramo = new Asignatura();
-        ramo.setNombre(datos[0]);
-        ramo.setNumeroId(Integer.parseInt(datos[1]));
-        ramo.setNivel(Integer.parseInt(datos[2]));
-        ramo.setHorasSct(Integer.parseInt(datos[3]));
-        ramo.setIdRequisitos(asignarIdPrerrequisitos(datos));
-        this.asignaturas.add(ramo);
+        String nombre = datos[0];
+        int id = Integer.parseInt(datos[1]);
+        int nivel = Integer.parseInt(datos[2]);
+        int horas = Integer.parseInt(datos[3]);
+
+        Asignatura asignatura = new Asignatura(nombre, id, nivel, horas, getIdPrerrequisitos(datos));
+        asignatura.setIdRequisitos(getIdPrerrequisitos(datos));
+
+
+        this.asignaturas.put(id, asignatura);
     }
-    private ArrayList<Integer> asignarIdPrerrequisitos(String[] datos) {
+    private ArrayList<Integer> getIdPrerrequisitos(String[] datos) {
         ArrayList<Integer> idPrerrequisitos = new ArrayList<>();
         for (int i = 4; i < datos.length; i++) idPrerrequisitos.add(Integer.parseInt(datos[i]));
         return idPrerrequisitos;
     }
-    private ArrayList<String> asignarNombrePrerrequisitos(Asignatura ramo){
+    private ArrayList<String> getNombrePrerrequisitos(Asignatura ramo){
         ArrayList<Integer> idRequisitos = ramo.getIdRequisitos();
         ArrayList<String> nombreRequisitos = new ArrayList<>();
         for (Integer idRequisito : idRequisitos) {
-            Asignatura asignatura = buscarAsignaturaPorId(idRequisito);
+            Asignatura asignatura = asignaturas.get(idRequisito);
             String prerrequisito = asignatura.getNombre();
             nombreRequisitos.add(prerrequisito);
         }
         return nombreRequisitos;
-    }
-    public Asignatura buscarAsignaturaPorId(int numeroId){
-        for (Asignatura asignatura : this.asignaturas) {
-            if (asignatura.getNumeroId() == numeroId) return asignatura;
-        }
-        return null;
     }
 
     private void cargarAlumnos(String archivo){
@@ -92,37 +93,43 @@ public class DataLoader {
     }
     private void procesarLineaAlumno(String linea){
         String[] datos = linea.split(",");
-        Alumno alumno = new Alumno();
-        alumno.setMatricula(datos[0]);
-        alumno.setNombre(datos[1]);
-        asignarAsignaturasAprobadas(datos, alumno);
-        this.alumnos.add(alumno);
+        String nombre = datos[0];
+        String matricula = datos[1];
+
+        Alumno alumno = new Alumno(nombre, matricula, getIdAsignaturasAprobadas(datos));
+        this.alumnos.put(matricula,alumno);
     }
-    private void asignarAsignaturasAprobadas(String[] datos, Alumno alumno){
+    private ArrayList<Integer> getIdAsignaturasAprobadas(String[] datos){
+        ArrayList<Integer> idAsignaturasAprobadas = new ArrayList<>();
         for (int i = 2; i < datos.length; i++) {
-            alumno.addIdAsignaturaAprobada(Integer.parseInt(datos[i]));
+            idAsignaturasAprobadas.add(Integer.parseInt(datos[i]));
         }
+        return idAsignaturasAprobadas;
     }
-    private ArrayList<String> asignarNombreAprobadas(Alumno alumno){
+    private ArrayList<String> getNombreAsignaturasAprobadas(Alumno alumno){
         ArrayList<Integer> idAsignaturasAprobadas = alumno.getIdAsignaturasAprobadas();
         ArrayList<String> nombreAprobadas = new ArrayList<>();
         for (Integer idAsignaturasAprobada : idAsignaturasAprobadas) {
-            Asignatura asignatura = buscarAsignaturaPorId(idAsignaturasAprobada);
+            Asignatura asignatura = asignaturas.get(idAsignaturasAprobada);
             String prerrequisito = asignatura.getNombre();
             nombreAprobadas.add(prerrequisito);
         }
         return nombreAprobadas;
     }
     private void cargarNombrePrerrequisitosAlumno(){
-        for(Alumno alumno : this.alumnos){
-            alumno.setNombreAsignaturasAprobadas(asignarNombreAprobadas(alumno));
+        for(Alumno alumno : getAlumnos()){
+            alumno.setNombreAsignaturasAprobadas(getNombreAsignaturasAprobadas(alumno));
         }
     }
 
     public ArrayList<Asignatura> getAsignaturas() {
-        return asignaturas;
+        return new ArrayList<>(asignaturas.values());
     }
     public ArrayList<Alumno> getAlumnos() {
-        return alumnos;
+        return new ArrayList<>(alumnos.values());
+    }
+
+    public ArrayList<String> getMatriculas(){
+        return new ArrayList<String>(alumnos.keySet());
     }
 }

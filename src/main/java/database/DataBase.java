@@ -17,7 +17,7 @@ public class DataBase extends DataLoader{
 
         if(palabrasClave.isEmpty()) return coincidencias;
 
-        for (Asignatura asignatura : this.asignaturas) {
+        for (Asignatura asignatura : getAsignaturas()) {
             String nombreAsignatura = asignatura.getNombre().toLowerCase().replaceAll("\\s+", "");
             if (contieneTodasLasPalabras(nombreAsignatura, palabrasClave)) {
                 coincidencias.add(asignatura);
@@ -46,15 +46,15 @@ public class DataBase extends DataLoader{
     }
 
     public Alumno buscarAlumnoPorMatricula(String matricula){
-        for (Alumno alumno : this.alumnos) {
-            if (alumno.getMatricula().equals(matricula)) return alumno;
-        }
-        return null;
+        return alumnos.get(matricula);
+    }
+    public Asignatura buscarAsignaturaPorId(int id){
+        return asignaturas.get(id);
     }
     public ArrayList<Asignatura> asignaturasAElegir(Alumno alumno){
         ArrayList<Asignatura> asignaturasAElegir = new ArrayList<>();
 
-        for(Asignatura asignatura: asignaturas){
+        for(Asignatura asignatura: getAsignaturas()){
             if (puedeTomarAsignatura(alumno, asignatura)) {
                     asignaturasAElegir.add(asignatura);
                 }
@@ -77,13 +77,10 @@ public class DataBase extends DataLoader{
         return !esAsignaturaAprobada(alumno, asignatura) && cumpleRequisitos(alumno, asignatura);
     }
     public boolean esAlumno(Alumno alumno){
-        return this.alumnos.contains(alumno);
+        return getAlumnos().contains(alumno);
     }
     public boolean esAlumno(String matricula){
-        for(Alumno alumno : this.alumnos){
-            if(alumno.getMatricula().equalsIgnoreCase(matricula)) return true;
-        }
-        return false;
+        return getMatriculas().contains(matricula);
     }
 
 }

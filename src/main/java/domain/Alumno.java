@@ -8,18 +8,11 @@ public class Alumno {
     ArrayList<Integer> idAsignaturasAprobadas = new ArrayList<>();
     ArrayList<String> nombreAsignaturasAprobadas = new ArrayList<>();
 
-    public Alumno(){}
-    public Alumno(String nombre, String matricula){
-        this.nombre = nombre;
-        this.matricula = matricula;
-    }
-    Alumno(String nombre, String matricula, ArrayList<Integer> idAsignaturasAprobadas) {
+    public Alumno(String nombre, String matricula, ArrayList<Integer> idAsignaturasAprobadas) {
         this.nombre = nombre;
         this.matricula = matricula;
         this.idAsignaturasAprobadas = idAsignaturasAprobadas;
     }
-
-
 
     public void addAsignaturaAprobada(int id){
         this.idAsignaturasAprobadas.add(id);

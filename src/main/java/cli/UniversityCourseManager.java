@@ -136,10 +136,10 @@ public class UniversityCourseManager {
     }
     public boolean imprimirRamosAElegir() {
         limpiarConsola();
-        ArrayList<Asignatura> ramosAElegir = db.asignaturasAElegir(alumno);
-        if (ramosAElegir != null) {
+        ArrayList<Asignatura> asignaturasAElegir = db.asignaturasAElegir(alumno);
+        if (asignaturasAElegir != null) {
             System.out.println("Ramos a elegir:");
-            AsignaturasManager.imprimir(ramosAElegir);
+            AsignaturasManager.imprimir(asignaturasAElegir);
         } else {
             System.out.println("No hay ramos a elegir");
         }
