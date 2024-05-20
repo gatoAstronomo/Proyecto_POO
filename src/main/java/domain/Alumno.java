@@ -14,6 +14,7 @@ public class Alumno {
         this.idAsignaturasAprobadas = idAsignaturasAprobadas;
     }
 
+
     public void addAsignaturaAprobada(int id){
         this.idAsignaturasAprobadas.add(id);
     }

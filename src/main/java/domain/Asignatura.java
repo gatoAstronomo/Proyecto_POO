@@ -22,6 +22,9 @@ public class Asignatura{
 
     }
 
+    public static void imprimirListaAsignaturas(ArrayList<Asignatura> listaAsignaturas){
+        for(Asignatura asignatura : listaAsignaturas) System.out.println(asignatura);
+    }
     public void imprimirNombreRequisitos(){
         System.out.print("Prerrequisitos: " + this.nombreRequisitos.get(0));
         for(int i = 1; i < this.nombreRequisitos.size(); i++){

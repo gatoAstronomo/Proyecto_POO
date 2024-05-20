@@ -1,21 +1,20 @@
 package cli;
 
-import database.DataBase;
+import data.DataBase;
 import domain.Alumno;
-import domain.AsignaturasManager;
 import domain.Asignatura;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class UniversityCourseManager {
+public class ConsoleUI {
 
     DataBase db;
     Alumno alumno;
     Scanner scanner;
     boolean salir;
 
-    public UniversityCourseManager() {
+    public ConsoleUI() {
         scanner = new Scanner(System.in);
         salir = false;
         cargarDatos();
@@ -105,7 +104,7 @@ public class UniversityCourseManager {
     }
     public boolean imprimirListaAsignaturas() {
         System.out.println("Asignaturas de la carrera de Ingenieria Civil Informatica");
-        AsignaturasManager.imprimir(db.getAsignaturas());
+        Asignatura.imprimirListaAsignaturas(db.getAsignaturas());
         return false;
     }
     public boolean buscarAsignaturaPorId() {
@@ -128,7 +127,7 @@ public class UniversityCourseManager {
 
         if (!listaAsignaturas.isEmpty()) {
             System.out.println("\nAsignaturas encontradas:");
-            AsignaturasManager.imprimir(listaAsignaturas);
+            Asignatura.imprimirListaAsignaturas(listaAsignaturas);
         } else {
             System.out.println("\nNo se encontró ninguna asignatura con ese Nombre.");
         }
@@ -139,7 +138,7 @@ public class UniversityCourseManager {
         ArrayList<Asignatura> asignaturasAElegir = db.asignaturasAElegir(alumno);
         if (asignaturasAElegir != null) {
             System.out.println("Ramos a elegir:");
-            AsignaturasManager.imprimir(asignaturasAElegir);
+            Asignatura.imprimirListaAsignaturas(asignaturasAElegir);
         } else {
             System.out.println("No hay ramos a elegir");
         }
@@ -154,8 +153,8 @@ public class UniversityCourseManager {
         System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
         return false;
     }
-    public boolean procesarOption(int option) {
-        return switch (option) {
+    public boolean procesarOpcion(int opcion) {
+        return switch (opcion) {
             case 1 -> imprimirListaAsignaturas();
             case 2 -> buscarAsignaturaPorId();
             case 3 -> buscarCoincidenciasAsignaturaPorNombre();
@@ -165,14 +164,14 @@ public class UniversityCourseManager {
         };
     }
 
-    public void launch() {
+    public void start() {
         salir = login();
 
         // Se mantiene el loop hasta que el usuario decida salir
         while (!salir){
             imprimirMenu();
             int opcion = dialogPedirOpcion();
-            salir = procesarOption(opcion);
+            salir = procesarOpcion(opcion);
         }
 
         scanner.close();

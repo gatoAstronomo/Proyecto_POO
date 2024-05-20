@@ -1,9 +1,8 @@
-import cli.UniversityCourseManager;
-import cli.UniversityCourseManager;
+import cli.ConsoleUI;
 
 public class Main {
     public static void main(String[] args){
-        UniversityCourseManager program = new UniversityCourseManager();
-        program.launch();
+        ConsoleUI program = new ConsoleUI();
+        program.start();
     }
 }

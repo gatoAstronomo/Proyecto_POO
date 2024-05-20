@@ -1,4 +1,4 @@
-package database;
+package data;
 
 import domain.Alumno;
 import domain.Asignatura;
@@ -20,7 +20,6 @@ public class DataLoader {
         alumnos = new HashMap<>();
         cargarDatos(asignaturasPath, alumnosPath);
     }
-
     public void cargarDatos(String asignaturaPath, String alumnoPath){
         cargarAsignaturas(asignaturaPath);
         cargarAlumnos(alumnoPath);
@@ -41,11 +40,6 @@ public class DataLoader {
         }
         cargarNombrePrerrequisitosAsignatura();
     }
-    private void cargarNombrePrerrequisitosAsignatura(){
-        for(Asignatura ramo : this.asignaturas.values().stream().toList()){
-            ramo.setNombrePrerrequisitos(getNombrePrerrequisitos(ramo));
-        }
-    }
     private void procesarLineaAsignatura(String linea) {
         String[] datos = linea.split(",");
 
@@ -55,9 +49,6 @@ public class DataLoader {
         int horas = Integer.parseInt(datos[3]);
 
         Asignatura asignatura = new Asignatura(nombre, id, nivel, horas, getIdPrerrequisitos(datos));
-        asignatura.setIdRequisitos(getIdPrerrequisitos(datos));
-
-
         this.asignaturas.put(id, asignatura);
     }
     private ArrayList<Integer> getIdPrerrequisitos(String[] datos) {
@@ -74,6 +65,11 @@ public class DataLoader {
             nombreRequisitos.add(prerrequisito);
         }
         return nombreRequisitos;
+    }
+    private void cargarNombrePrerrequisitosAsignatura(){
+        for(Asignatura ramo : this.asignaturas.values().stream().toList()){
+            ramo.setNombrePrerrequisitos(getNombrePrerrequisitos(ramo));
+        }
     }
 
     private void cargarAlumnos(String archivo){
@@ -117,19 +113,8 @@ public class DataLoader {
         return nombreAprobadas;
     }
     private void cargarNombrePrerrequisitosAlumno(){
-        for(Alumno alumno : getAlumnos()){
+        for(Alumno alumno : alumnos.values()){
             alumno.setNombreAsignaturasAprobadas(getNombreAsignaturasAprobadas(alumno));
         }
-    }
-
-    public ArrayList<Asignatura> getAsignaturas() {
-        return new ArrayList<>(asignaturas.values());
-    }
-    public ArrayList<Alumno> getAlumnos() {
-        return new ArrayList<>(alumnos.values());
-    }
-
-    public ArrayList<String> getMatriculas(){
-        return new ArrayList<String>(alumnos.keySet());
     }
 }
