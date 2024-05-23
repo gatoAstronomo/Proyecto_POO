@@ -166,7 +166,8 @@ public class ConsoleUI {
 
     public void start() {
         salir = login();
-
+        System.out.println(alumno);
+        System.out.println(alumno);
         // Se mantiene el loop hasta que el usuario decida salir
         while (!salir){
             imprimirMenu();

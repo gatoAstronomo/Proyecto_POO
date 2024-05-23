@@ -38,7 +38,7 @@ public class DataLoader {
             System.out.println("Cerrando el programa.......");
             System.exit(1);
         }
-        cargarNombrePrerrequisitosAsignatura();
+        cargarRequisitosAsignatura();
     }
     private void procesarLineaAsignatura(String linea) {
         String[] datos = linea.split(",");
@@ -56,19 +56,13 @@ public class DataLoader {
         for (int i = 4; i < datos.length; i++) idPrerrequisitos.add(Integer.parseInt(datos[i]));
         return idPrerrequisitos;
     }
-    private ArrayList<String> getNombrePrerrequisitos(Asignatura ramo){
-        ArrayList<Integer> idRequisitos = ramo.getIdRequisitos();
-        ArrayList<String> nombreRequisitos = new ArrayList<>();
-        for (Integer idRequisito : idRequisitos) {
-            Asignatura asignatura = asignaturas.get(idRequisito);
-            String prerrequisito = asignatura.getNombre();
-            nombreRequisitos.add(prerrequisito);
-        }
-        return nombreRequisitos;
-    }
-    private void cargarNombrePrerrequisitosAsignatura(){
-        for(Asignatura ramo : this.asignaturas.values().stream().toList()){
-            ramo.setNombrePrerrequisitos(getNombrePrerrequisitos(ramo));
+    private void cargarRequisitosAsignatura(){
+        for(Asignatura asignatura : asignaturas.values()){
+            ArrayList<Asignatura> requisitos = new ArrayList<>();
+            for(Integer ID : asignatura.getIdRequisitos()){
+                requisitos.add(asignaturas.get(ID));
+            }
+            asignatura.setRequisitos(requisitos);
         }
     }
 
@@ -102,19 +96,13 @@ public class DataLoader {
         }
         return idAsignaturasAprobadas;
     }
-    private ArrayList<String> getNombreAsignaturasAprobadas(Alumno alumno){
-        ArrayList<Integer> idAsignaturasAprobadas = alumno.getIdAsignaturasAprobadas();
-        ArrayList<String> nombreAprobadas = new ArrayList<>();
-        for (Integer idAsignaturasAprobada : idAsignaturasAprobadas) {
-            Asignatura asignatura = asignaturas.get(idAsignaturasAprobada);
-            String prerrequisito = asignatura.getNombre();
-            nombreAprobadas.add(prerrequisito);
-        }
-        return nombreAprobadas;
-    }
     private void cargarNombrePrerrequisitosAlumno(){
         for(Alumno alumno : alumnos.values()){
-            alumno.setNombreAsignaturasAprobadas(getNombreAsignaturasAprobadas(alumno));
+            ArrayList<Asignatura> asignaturasAprobadas = new ArrayList<>();
+            for(Integer idAsignaturaAprobada : alumno.getIdAsignaturasAprobadas()){
+                asignaturasAprobadas.add(asignaturas.get(idAsignaturaAprobada));
+            }
+            alumno.setAsignaturasAprobadas(asignaturasAprobadas);
         }
     }
 }

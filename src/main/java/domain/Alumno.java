@@ -6,7 +6,7 @@ public class Alumno {
     String nombre;
     String matricula;
     ArrayList<Integer> idAsignaturasAprobadas = new ArrayList<>();
-    ArrayList<String> nombreAsignaturasAprobadas = new ArrayList<>();
+    ArrayList<Asignatura> asignaturasAprobadas = new ArrayList<>();
 
     public Alumno(String nombre, String matricula, ArrayList<Integer> idAsignaturasAprobadas) {
         this.nombre = nombre;
@@ -21,14 +21,8 @@ public class Alumno {
     public void addIdAsignaturaAprobada(int idAsignaturaAprobada){
         this.idAsignaturasAprobadas.add(idAsignaturaAprobada);
     }
-    public void setNombre(String nombre){
-        this.nombre = nombre;
-    }
     public String getNombre(){
         return this.nombre;
-    }
-    public void setMatricula(String matricula){
-        this.matricula = matricula;
     }
     public String getMatricula(){
         return this.matricula;
@@ -36,14 +30,8 @@ public class Alumno {
     public ArrayList<Integer> getIdAsignaturasAprobadas(){
         return this.idAsignaturasAprobadas;
     }
-    public void setIdAsignaturasAprobadas(ArrayList<Integer> idAsignaturasAprobadas){
-        this.idAsignaturasAprobadas = idAsignaturasAprobadas;
-    }
-    public ArrayList<String> getNombreAsignaturasAprobadas() {
-        return nombreAsignaturasAprobadas;
-    }
-    public void setNombreAsignaturasAprobadas(ArrayList<String> nombreAsignaturasAprobadas) {
-        this.nombreAsignaturasAprobadas = nombreAsignaturasAprobadas;
+    public void setAsignaturasAprobadas(ArrayList<Asignatura> asignaturasAprobadas) {
+        this.asignaturasAprobadas = asignaturasAprobadas;
     }
 
     @Override
@@ -52,9 +40,9 @@ public class Alumno {
         stringBuilder.append("Nombre: ").append(this.nombre).append("\n");
         stringBuilder.append("Matrícula: ").append(this.matricula).append("\n");
         stringBuilder.append("Aprobadas: ");
-        for (int i = 0; i < this.nombreAsignaturasAprobadas.size(); i++) {
-            stringBuilder.append(this.nombreAsignaturasAprobadas.get(i));
-            if (i < this.nombreAsignaturasAprobadas.size() - 1) {
+        for (int i = 0; i < this.asignaturasAprobadas.size(); i++) {
+            stringBuilder.append(this.asignaturasAprobadas.get(i).getNombre());
+            if (i < this.asignaturasAprobadas.size() - 1) {
                 stringBuilder.append(", ");
             }
         }

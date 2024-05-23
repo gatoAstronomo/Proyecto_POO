@@ -8,8 +8,8 @@ public class Asignatura{
     int numeroId;
     int nivel;
     int horasSct;
+    ArrayList<Asignatura> requisitos;
     ArrayList<Integer> idRequisitos = new ArrayList<>();
-    ArrayList<String> nombreRequisitos = new ArrayList<>();
 
     public Asignatura(String nombre, int numeroId, int nivel, int horasSct, ArrayList<Integer> idRequisitos){
         this.nombre = nombre;
@@ -25,24 +25,12 @@ public class Asignatura{
     public static void imprimirListaAsignaturas(ArrayList<Asignatura> listaAsignaturas){
         for(Asignatura asignatura : listaAsignaturas) System.out.println(asignatura);
     }
-    public void imprimirNombreRequisitos(){
-        System.out.print("Prerrequisitos: " + this.nombreRequisitos.get(0));
-        for(int i = 1; i < this.nombreRequisitos.size(); i++){
-            System.out.print(", " + this.nombreRequisitos.get(i));
-        }
-    }
 
     public String getNombre(){
         return this.nombre;
     }
-    public void setNombre(String nombre){
-        this.nombre = nombre;
-    }
     public int getNumeroId(){
         return this.numeroId;
-    }
-    public void setNumeroId(int numeroId){
-        this.numeroId = numeroId;
     }
     public int getNivel(){
         return this.nivel;
@@ -60,20 +48,8 @@ public class Asignatura{
         return this.idRequisitos;
     }
 
-    public void setIdRequisitos(ArrayList<Integer> idRequisitos){
-        this.idRequisitos = idRequisitos;
-    }
-    public void addIdPrerrequisito(int idPrerrequisito){
-        this.idRequisitos.add(idPrerrequisito);
-    }
-    public ArrayList<String> getNombrePrerrequisitos(){
-        return this.nombreRequisitos;
-    }
-    public void setNombrePrerrequisitos(ArrayList<String> nombrePrerrequisitos){
-        this.nombreRequisitos = nombrePrerrequisitos;
-    }
-    public void addNombrePrerrequisito(String nombrePrerrequisito){
-        this.nombreRequisitos.add(nombrePrerrequisito);
+    public void setRequisitos(ArrayList<Asignatura> requisitos){
+        this.requisitos = requisitos;
     }
 
     @Override
@@ -84,10 +60,10 @@ public class Asignatura{
         sb.append("Nivel: ").append(nivel).append("\n");
         sb.append("Horas SCT: ").append(horasSct).append("\n");
         sb.append("Prerrequisitos: ");
-        if (nombreRequisitos != null && !nombreRequisitos.isEmpty()) {
-            sb.append(nombreRequisitos.get(0));
-            for (int i = 1; i < nombreRequisitos.size(); i++) {
-                sb.append(", ").append(nombreRequisitos.get(i));
+        if (requisitos != null && !requisitos.isEmpty()) {
+            sb.append(requisitos.get(0).getNombre());
+            for (int i = 1; i < requisitos.size(); i++) {
+                sb.append(", ").append(requisitos.get(i).nombre);
             }
         }
         sb.append("\n");
