@@ -1,6 +1,6 @@
 package proyect;
 
-import database.DataBase;
+import datos.DataBase;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,14 +1,18 @@
-package database;
+package datos;
 
 import model.Alumno;
 import model.Asignatura;
 
-import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.BufferedReader;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 public class DataBase{
     ArrayList<Asignatura> asignaturas = new ArrayList<Asignatura>();
     ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
@@ -18,36 +22,33 @@ public class DataBase{
         leerAlumnos("src/main/java/resources/alumnos.csv");
     }
 
-    public void leerAsignaturas(String archivo) {
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(archivo));
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                procesarLinea(linea);
-            }
-            br.close();
-        } catch (IOException e) {
-            System.out.println("Error al leer el archivo");
-        }
+public void leerAsignaturas(String archivo) {
+    try (Stream<String> lines = Files.lines(Paths.get(archivo))) {
+        List<Asignatura> nuevasAsignaturas = lines.map(this::procesarLinea)
+                .filter(asignatura -> asignatura != null)
+                .collect(Collectors.toList());
+        asignaturas.addAll(nuevasAsignaturas);
         cargarNombrePrerrequisitosAsignatura();
+    } catch (IOException e) {
+        System.out.println("Error al leer el archivo");
     }
+}
 
-    public void cargarNombrePrerrequisitosAsignatura(){
-        for(Asignatura ramo : this.asignaturas){
-            ramo.setNombrePrerrequisitos(asignarNombrePrerrequisitos(ramo));
-        }
+    public void cargarNombrePrerrequisitosAsignatura() {
+        asignaturas.forEach(ramo -> ramo.setNombrePrerrequisitos(asignarNombrePrerrequisitos(ramo)));
     }
-
-    private void procesarLinea(String linea) {
+    private Asignatura procesarLinea(String linea) {
         String[] datos = linea.split(",");
-
+        if (datos.length < 4) {
+            return null;
+        }
         Asignatura ramo = new Asignatura();
         ramo.setNombre(datos[0]);
         ramo.setNumeroId(Integer.parseInt(datos[1]));
-        ramo.setNivel(Integer.parseInt(datos[2]));
-        ramo.setHorasSct(Integer.parseInt(datos[3]));
+        ramo.setNivel(Integer.parseInt(datos[2], 10));
+        ramo.setHorasSct(Integer.parseInt(datos[3], 10));
         ramo.setIdPrerrequisitos(asignarIdPrerrequisitos(datos));
-        this.asignaturas.add(ramo);
+        return ramo;
     }
 
     private ArrayList<Integer> asignarIdPrerrequisitos(String[] datos) {

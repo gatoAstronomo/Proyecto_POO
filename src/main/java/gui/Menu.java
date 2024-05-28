@@ -1,6 +1,6 @@
 package gui;
 
-import database.DataBase;
+import datos.DataBase;
 import model.Asignatura;
 
 import java.util.ArrayList;

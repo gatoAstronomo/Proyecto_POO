@@ -19,4 +19,4 @@ Opciones principales a implementar
 - Ver por medio de una GUI el plan de estudios que ha seguido un alumno
 
 - Cambiar el nombre de asignaturasInformatica a DB
-- Crear los paquetes domain, GUI, database y utils
+- Crear los paquetes domain, GUI, datos y utils
