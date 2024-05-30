@@ -35,13 +35,13 @@ public class Asignatura{
     public int getNivel(){
         return this.nivel;
     }
-    public void setNivel(int nivel){
+    public void setNivel(int nivel){ //no se esta ocupando
         this.nivel = nivel;
     }
-    public int getHorasSCT(){
+    public int getHorasSCT(){ //no se esta ocupando
         return this.horasSct;
     }
-    public void setHorasSct(int horasSct){
+    public void setHorasSct(int horasSct){ //nose esta ocupando
         this.horasSct = horasSct;
     }
     public ArrayList<Integer> getIdRequisitos(){

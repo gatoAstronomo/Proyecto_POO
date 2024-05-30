@@ -15,10 +15,10 @@ public class Alumno {
     }
 
 
-    public void addAsignaturaAprobada(int id){
+    public void addAsignaturaAprobada(int id){ // no se esta ocupando
         this.idAsignaturasAprobadas.add(id);
     }
-    public void addIdAsignaturaAprobada(int idAsignaturaAprobada){
+    public void addIdAsignaturaAprobada(int idAsignaturaAprobada){ // no se esta ocupando
         this.idAsignaturasAprobadas.add(idAsignaturaAprobada);
     }
     public String getNombre(){
