@@ -1,3 +1,5 @@
+package launcher;
+
 import cli.ConsoleUI;
 
 public class Main {
