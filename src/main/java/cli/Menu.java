@@ -1,4 +1,4 @@
-package gui;
+package cli;
 
 import datos.DataBase;
 import model.Asignatura;
