@@ -2,13 +2,22 @@ package data;
 
 import domain.Alumno;
 import domain.Asignatura;
+
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import static domain.util.*;
 
-public class DataBase extends DataLoader{
+public class DataBase {
+
+    protected Map<Integer, Asignatura> asignaturas;
+    protected Map<String, Alumno> alumnos;
 
     public DataBase(String asignaturasPath, String alumnosPath) {
-        super(asignaturasPath, alumnosPath);
+        DataLoader dataLoader = new DataLoader(asignaturasPath, alumnosPath);
+        asignaturas = dataLoader.getAsignaturas();
+        alumnos = dataLoader.getAlumnos();
     }
 
     public ArrayList<Asignatura> buscarCoincidenciasPorNombre(String nombreBuscar) {
@@ -46,8 +55,11 @@ public class DataBase extends DataLoader{
         return alumnos.containsKey(matricula);
     }
 
-    public ArrayList<Asignatura> getAsignaturas(){
+    public ArrayList<Asignatura> getAsignaturas() {
         return new ArrayList<>(asignaturas.values());
     }
 
+    public ArrayList<Alumno> getAlumnos() {
+        return new ArrayList<>(alumnos.values());
+    }
 }
