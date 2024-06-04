@@ -29,21 +29,27 @@ public class Asignatura{
     public String getNombre(){
         return this.nombre;
     }
+
     public int getNumeroId(){
         return this.numeroId;
     }
+
     public int getNivel(){
         return this.nivel;
     }
+
     public void setNivel(int nivel){ //no se esta ocupando
         this.nivel = nivel;
     }
+
     public int getHorasSCT(){ //no se esta ocupando
         return this.horasSct;
     }
+
     public void setHorasSct(int horasSct){ //nose esta ocupando
         this.horasSct = horasSct;
     }
+
     public ArrayList<Integer> getIdRequisitos(){
         return this.idRequisitos;
     }
@@ -53,6 +59,7 @@ public class Asignatura{
     }
 
     @Override
+
     public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append("Nombre: ").append(nombre).append("\n");

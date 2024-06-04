@@ -21,15 +21,19 @@ public class util {
         }
         return true;
     }
+
     private static boolean esAsignaturaAprobada(Alumno alumno, Asignatura asignatura){
         return alumno.getIdAsignaturasAprobadas().contains(asignatura.getNumeroId());
     }
+
     public static boolean puedeTomarAsignatura(Alumno alumno, Asignatura asignatura){
         return !esAsignaturaAprobada(alumno, asignatura) && cumpleRequisitos(alumno, asignatura);
     }
+
     public static String quitarEspacios(String nombreAsignatura){
         return nombreAsignatura.toLowerCase().replaceAll("\\s+", "");
     }
+
     public static ArrayList<String> preprocessPalabrasClave(String nombreBuscar) {
         String[] palabras = nombreBuscar.split("\\s+");
         ArrayList<String> palabrasClave = new ArrayList<>();

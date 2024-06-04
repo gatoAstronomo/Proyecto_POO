@@ -2,11 +2,8 @@ package data;
 
 import domain.Alumno;
 import domain.Asignatura;
-
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
-
 import static domain.util.*;
 
 public class DataBase {
@@ -34,12 +31,15 @@ public class DataBase {
 
         return coincidencias;
     }
+
     public Alumno buscarAlumnoPorMatricula(String matricula){
         return alumnos.get(matricula);
     }
+
     public Asignatura buscarAsignaturaPorId(Integer id){
         return asignaturas.get(id);
     }
+
     public ArrayList<Asignatura> asignaturasAElegir(Alumno alumno){
         ArrayList<Asignatura> asignaturasAElegir = new ArrayList<>();
 
@@ -51,6 +51,7 @@ public class DataBase {
 
         return asignaturasAElegir;
     }
+
     public boolean esAlumno(String matricula){
         return alumnos.containsKey(matricula);
     }
