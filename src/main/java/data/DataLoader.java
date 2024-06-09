@@ -2,7 +2,6 @@ package data;
 
 import domain.Alumno;
 import domain.Asignatura;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;

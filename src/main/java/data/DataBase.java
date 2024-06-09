@@ -4,7 +4,7 @@ import domain.Alumno;
 import domain.Asignatura;
 import java.util.ArrayList;
 import java.util.Map;
-import static domain.util.*;
+import static domain.Util.*;
 
 public class DataBase {
 

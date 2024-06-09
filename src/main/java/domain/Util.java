@@ -1,18 +1,9 @@
 package domain;
 
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-public class util {
-    /* public static boolean esMatriculaValida(String matricula){
-        String regex = "^(\\d{8,9})[0-9kK](\\d{2})$";
+public class Util {
 
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(matricula);
-
-        return matcher.matches();
-    }*/
     private static boolean cumpleRequisitos(Alumno alumno, Asignatura asignatura) {
         for (Integer i : asignatura.getIdRequisitos()) {
             if (!alumno.getIdAsignaturasAprobadas().contains(i)) {

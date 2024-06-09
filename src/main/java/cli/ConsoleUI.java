@@ -3,7 +3,6 @@ package cli;
 import data.DataBase;
 import domain.Alumno;
 import domain.Asignatura;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -19,6 +18,7 @@ public class ConsoleUI {
         salir = false;
         cargarDatos();
     }
+
     private void cargarDatos() {
         String asignaturaPath = "src/main/java/resources/asignaturas.csv";
         String alumnoPath = "src/main/java/resources/alumnos.csv";
@@ -39,10 +39,12 @@ public class ConsoleUI {
             System.out.println("Error al limpiar la consola: " + e.getMessage());
         }
     }
+
     public void bienvenida() {
         String matricula = alumno.getMatricula();
         System.out.printf("Bienvenido %s", db.buscarAlumnoPorMatricula(matricula).getNombre());
     }
+
     public static void imprimirMenu() {
         System.out.println("\n***** Menú *****");
         System.out.println("1. Ver lista de asignaturas");
@@ -55,6 +57,7 @@ public class ConsoleUI {
     public int tomarEntero() {
         return Integer.parseInt(scanner.nextLine());
     }
+
     public String tomarString() {
         return scanner.nextLine();
     }
@@ -77,9 +80,11 @@ public class ConsoleUI {
     public int dialogPedirOpcion() {
         return dialogPedirEntero("Ingrese una opción", "¡¡Ingrese una opción valida!!");
     }
+
     public String dialogPedirMatricula() {
         return dialogPedirString("Ingrese su matricula: ");
     }
+
     public int dialogPedirIdAsignatura() {
         return dialogPedirEntero("Ingrese el número de ID de la asignatura a buscar: ", "Ingrese un ID valido");
     }
@@ -102,11 +107,13 @@ public class ConsoleUI {
             System.out.println("Ingrese matricula valida.");
         }
     }
+
     public boolean imprimirListaAsignaturas() {
         System.out.println("Asignaturas de la carrera de Ingenieria Civil Informatica");
         Asignatura.imprimirListaAsignaturas(db.getAsignaturas());
         return false;
     }
+
     public boolean buscarAsignaturaPorId() {
         limpiarConsola();
         int id = dialogPedirIdAsignatura();
@@ -119,6 +126,7 @@ public class ConsoleUI {
         }
         return false;
     }
+
     public boolean buscarCoincidenciasAsignaturaPorNombre() {
         limpiarConsola();
         System.out.print("Ingrese el nombre de la asignatura a buscar: ");
@@ -133,6 +141,7 @@ public class ConsoleUI {
         }
         return false;
     }
+
     public boolean imprimirRamosAElegir() {
         limpiarConsola();
         ArrayList<Asignatura> asignaturasAElegir = db.asignaturasAElegir(alumno);
@@ -144,15 +153,18 @@ public class ConsoleUI {
         }
         return false;
     }
+
     public static boolean exit() {
         limpiarConsola();
         System.out.println("Saliendo del programa...");
         return true;
     }
+
     public static boolean defaultOption() {
         System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
         return false;
     }
+
     public boolean procesarOpcion(int opcion) {
         return switch (opcion) {
             case 1 -> imprimirListaAsignaturas();
