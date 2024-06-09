@@ -8,6 +8,9 @@ import java.util.Scanner;
 
 public class ConsoleUI {
 
+    private static final String ASIGNATURAS_PATH = "src/main/java/resources/asignaturas.csv";
+    private static final String ALUMNOS_PATH = "src/main/java/resources/alumnos.csv";
+
     DataBase db;
     Alumno alumno;
     Scanner scanner;
@@ -20,9 +23,7 @@ public class ConsoleUI {
     }
 
     private void cargarDatos() {
-        String asignaturaPath = "src/main/java/resources/asignaturas.csv";
-        String alumnoPath = "src/main/java/resources/alumnos.csv";
-        db = new DataBase(asignaturaPath, alumnoPath);
+        this.db = new DataBase(ASIGNATURAS_PATH, ALUMNOS_PATH);
     }
 
     public static void limpiarConsola() {
@@ -89,7 +90,28 @@ public class ConsoleUI {
         return dialogPedirEntero("Ingrese el número de ID de la asignatura a buscar: ", "Ingrese un ID valido");
     }
 
-    /* Cada opción del menu devuelve el estado del programa, false es para seguir, true termina el programa*/
+    /**
+     * Método principal que inicia la interfaz de consola.
+     * Realiza el login del usuario y muestra el menú hasta que el usuario decida salir.
+     */
+
+    public void start() {
+        salir = login(); // Salir si no se puede hacer login
+
+        while (!salir){
+            imprimirMenu();
+            int opcion = dialogPedirOpcion();
+            salir = procesarOpcion(opcion);
+        }
+
+        scanner.close();
+    }
+
+    /**
+     * Realiza el proceso de login del usuario.
+     * @return true si el usuario decide salir, false si el login es exitoso.
+     */
+
     public boolean login() {
         System.out.println("Bienvenido a UCM");
         System.out.println("Ingrese 1 para salir");
@@ -175,17 +197,4 @@ public class ConsoleUI {
             default -> defaultOption();
         };
     }
-
-    public void start() {
-        salir = login();
-        // Se mantiene el loop hasta que el usuario decida salir
-        while (!salir){
-            imprimirMenu();
-            int opcion = dialogPedirOpcion();
-            salir = procesarOpcion(opcion);
-        }
-
-        scanner.close();
-    }
-
 }

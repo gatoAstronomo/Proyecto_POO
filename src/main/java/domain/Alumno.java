@@ -1,10 +1,11 @@
 package domain;
+
 import java.util.ArrayList; 
 
-
 public class Alumno {
-    private String nombre;
-    private String matricula;
+
+    private final String nombre;
+    private final String matricula;
     private ArrayList<Integer> idAsignaturasAprobadas = new ArrayList<>();
     private ArrayList<Asignatura> asignaturasAprobadas = new ArrayList<>();
 
@@ -12,15 +13,6 @@ public class Alumno {
         this.nombre = nombre;
         this.matricula = matricula;
         this.idAsignaturasAprobadas = idAsignaturasAprobadas;
-    }
-
-
-    public void addAsignaturaAprobada(int id){ // no se esta ocupando
-        this.idAsignaturasAprobadas.add(id);
-    }
-
-    public void addIdAsignaturaAprobada(int idAsignaturaAprobada){ // no se esta ocupando
-        this.idAsignaturasAprobadas.add(idAsignaturaAprobada);
     }
 
     public String getNombre(){
