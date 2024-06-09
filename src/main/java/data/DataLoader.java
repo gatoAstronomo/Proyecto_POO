@@ -11,8 +11,8 @@ import java.util.Map;
 
 public class DataLoader {
 
-    protected Map<Integer, Asignatura> asignaturas;
-    protected Map<String, Alumno> alumnos;
+    private Map<Integer, Asignatura> asignaturas;
+    private Map<String, Alumno> alumnos;
 
     public DataLoader(String asignaturasPath, String alumnosPath){
         asignaturas = new HashMap<>();
