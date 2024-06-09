@@ -19,6 +19,7 @@ public class DataLoader {
         alumnos = new HashMap<>();
         cargarDatos(asignaturasPath, alumnosPath);
     }
+
     public void cargarDatos(String asignaturaPath, String alumnoPath){
         cargarAsignaturas(asignaturaPath);
         cargarAlumnos(alumnoPath);
@@ -39,6 +40,7 @@ public class DataLoader {
         }
         cargarRequisitosAsignaturas();
     }
+
     private void procesarLineaAsignatura(String linea) {
         String[] datos = linea.split(",");
 
@@ -50,16 +52,19 @@ public class DataLoader {
         Asignatura asignatura = new Asignatura(nombre, id, nivel, horas, leerIdPrerrequisitos(datos));
         this.asignaturas.put(id, asignatura);
     }
+
     private ArrayList<Integer> leerIdPrerrequisitos(String[] datos) {
         ArrayList<Integer> idPrerrequisitos = new ArrayList<>();
         for (int i = 4; i < datos.length; i++) idPrerrequisitos.add(Integer.parseInt(datos[i]));
         return idPrerrequisitos;
     }
+
     private void cargarRequisitosAsignaturas(){
         for(Asignatura asignatura : asignaturas.values()){
             cargarRequisitosAsignatura(asignatura);
         }
     }
+
     private void cargarRequisitosAsignatura(Asignatura asignatura){
         ArrayList<Asignatura> requisitos = new ArrayList<>();
         for(Integer ID : asignatura.getIdRequisitos()){
@@ -83,6 +88,7 @@ public class DataLoader {
         }
         cargarAsignaturasAprobadasListaAlumnos();
     }
+
     private void procesarLineaAlumno(String linea){
         String[] datos = linea.split(",");
         String nombre = datos[0];
@@ -91,6 +97,7 @@ public class DataLoader {
         Alumno alumno = new Alumno(nombre, matricula, leerIdAsignaturasAprobadas(datos));
         this.alumnos.put(matricula,alumno);
     }
+
     private ArrayList<Integer> leerIdAsignaturasAprobadas(String[] datos){
         ArrayList<Integer> idAsignaturasAprobadas = new ArrayList<>();
         for (int i = 2; i < datos.length; i++) {
@@ -98,11 +105,13 @@ public class DataLoader {
         }
         return idAsignaturasAprobadas;
     }
+
     private void cargarAsignaturasAprobadasListaAlumnos(){
         for(Alumno alumno : alumnos.values()){
             cargarAsignaturasAprobadasAlumno(alumno);
         }
     }
+
     private void cargarAsignaturasAprobadasAlumno(Alumno alumno){
         ArrayList<Asignatura> asignaturasAprobadas = new ArrayList<>();
         for(Integer idAsignaturaAprobada : alumno.getIdAsignaturasAprobadas()){
@@ -114,6 +123,7 @@ public class DataLoader {
     public Map<Integer, Asignatura> getAsignaturas() {
         return asignaturas;
     }
+
     public Map<String, Alumno> getAlumnos() {
         return alumnos;
     }

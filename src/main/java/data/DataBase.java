@@ -8,8 +8,8 @@ import static domain.Util.*;
 
 public class DataBase {
 
-    protected Map<Integer, Asignatura> asignaturas;
-    protected Map<String, Alumno> alumnos;
+    private Map<Integer, Asignatura> asignaturas;
+    private Map<String, Alumno> alumnos;
 
     public DataBase(String asignaturasPath, String alumnosPath) {
         DataLoader dataLoader = new DataLoader(asignaturasPath, alumnosPath);

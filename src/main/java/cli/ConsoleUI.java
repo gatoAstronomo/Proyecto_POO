@@ -78,7 +78,7 @@ public class ConsoleUI {
     }
 
     public int dialogPedirOpcion() {
-        return dialogPedirEntero("Ingrese una opción", "¡¡Ingrese una opción valida!!");
+        return dialogPedirEntero("Ingrese una opción: ", "¡¡Ingrese una opción valida!!");
     }
 
     public String dialogPedirMatricula() {

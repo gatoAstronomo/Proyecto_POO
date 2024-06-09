@@ -3,10 +3,10 @@ import java.util.ArrayList;
 
 
 public class Alumno {
-    String nombre;
-    String matricula;
-    ArrayList<Integer> idAsignaturasAprobadas = new ArrayList<>();
-    ArrayList<Asignatura> asignaturasAprobadas = new ArrayList<>();
+    private String nombre;
+    private String matricula;
+    private ArrayList<Integer> idAsignaturasAprobadas = new ArrayList<>();
+    private ArrayList<Asignatura> asignaturasAprobadas = new ArrayList<>();
 
     public Alumno(String nombre, String matricula, ArrayList<Integer> idAsignaturasAprobadas) {
         this.nombre = nombre;
@@ -18,18 +18,23 @@ public class Alumno {
     public void addAsignaturaAprobada(int id){ // no se esta ocupando
         this.idAsignaturasAprobadas.add(id);
     }
+
     public void addIdAsignaturaAprobada(int idAsignaturaAprobada){ // no se esta ocupando
         this.idAsignaturasAprobadas.add(idAsignaturaAprobada);
     }
+
     public String getNombre(){
         return this.nombre;
     }
+
     public String getMatricula(){
         return this.matricula;
     }
+
     public ArrayList<Integer> getIdAsignaturasAprobadas(){
         return this.idAsignaturasAprobadas;
     }
+
     public void setAsignaturasAprobadas(ArrayList<Asignatura> asignaturasAprobadas) {
         this.asignaturasAprobadas = asignaturasAprobadas;
     }

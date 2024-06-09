@@ -35,6 +35,7 @@ public class Util {
         }
         return palabrasClave;
     }
+
     public static boolean contieneTodasLasPalabras(String nombreAsignatura, ArrayList<String> palabrasClave) {
         for (String palabra : palabrasClave) {
             if (!nombreAsignatura.contains(palabra)) {
