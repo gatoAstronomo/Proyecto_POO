@@ -52,7 +52,8 @@ public class ConsoleUI {
         System.out.println("2. Buscar asignatura por ID");
         System.out.println("3. Buscar asignatura por Nombre");
         System.out.println("4. Ver asignaturas a tomar");
-        System.out.println("5. Salir");
+        System.out.println("5. Ver asignaturas aprobadas");
+        System.out.println("6. Salir");
     }
 
     public int tomarEntero() {
@@ -136,6 +137,12 @@ public class ConsoleUI {
         return false;
     }
 
+    public boolean imprimirAsignaturasAprobadas() {
+        System.out.println("Asignaturas aprobadas:");
+        Asignatura.imprimirListaAsignaturas(alumno.getAsignaturasAprobadas());
+        return false;
+    }
+
     public boolean buscarAsignaturaPorId() {
         limpiarConsola();
         int id = dialogPedirIdAsignatura();
@@ -193,7 +200,8 @@ public class ConsoleUI {
             case 2 -> buscarAsignaturaPorId();
             case 3 -> buscarCoincidenciasAsignaturaPorNombre();
             case 4 -> imprimirRamosAElegir();
-            case 5 -> exit();
+            case 5 -> imprimirAsignaturasAprobadas();
+            case 6 -> exit();
             default -> defaultOption();
         };
     }
