@@ -33,7 +33,9 @@ public void leerAsignaturas(String archivo) {
         System.out.println("Error al leer el archivo");
     }
 }
-
+    public int getCurriculumSize(){
+        return this.asignaturas.size();
+    }
     public void cargarNombrePrerrequisitosAsignatura() {
         asignaturas.forEach(ramo -> ramo.setNombrePrerrequisitos(asignarNombrePrerrequisitos(ramo)));
     }
