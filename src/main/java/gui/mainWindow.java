@@ -6,7 +6,7 @@ import java.awt.*;
  * DOCUMENTACION:
  *
  * - NOMENCLATURA:
- * Todo sufijo _LO hace referencia a LayOut.
+ * cada sufijo _LO hace referencia a LayOut.
  *
  */
 public class mainWindow extends JFrame {
