@@ -31,6 +31,11 @@ public class Alumno {
         this.asignaturasAprobadas = asignaturasAprobadas;
     }
 
+    public ArrayList<Asignatura> getAsignaturasAprobadas() {
+        return this.asignaturasAprobadas;
+    }
+
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
