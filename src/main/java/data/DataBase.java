@@ -4,15 +4,23 @@ import domain.Alumno;
 import domain.Asignatura;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.stream.Collectors;
+
 import static domain.Util.*;
 
 public class DataBase {
-
+    private static final String ASIGNATURAS_PATH = "src/main/java/resources/asignaturas.csv";
+    private static final String ALUMNOS_PATH = "src/main/java/resources/alumnos.csv";
     private Map<Integer, Asignatura> asignaturas;
     private Map<String, Alumno> alumnos;
 
     public DataBase(String asignaturasPath, String alumnosPath) {
         DataLoader dataLoader = new DataLoader(asignaturasPath, alumnosPath);
+        asignaturas = dataLoader.getAsignaturas();
+        alumnos = dataLoader.getAlumnos();
+    }
+    public DataBase() {
+        DataLoader dataLoader = new DataLoader(ASIGNATURAS_PATH, ALUMNOS_PATH);
         asignaturas = dataLoader.getAsignaturas();
         alumnos = dataLoader.getAlumnos();
     }
@@ -50,6 +58,12 @@ public class DataBase {
             }
 
         return asignaturasAElegir;
+    }
+    public ArrayList<Asignatura> buscarAsignaturasPorNivel(int nivel){
+         ArrayList<Asignatura> R = asignaturas.values().stream()
+                                              .filter(r->r.getNivel() == nivel)
+                                              .collect(Collectors.toCollection(ArrayList::new));
+        return R;
     }
 
     public boolean esAlumno(String matricula){
