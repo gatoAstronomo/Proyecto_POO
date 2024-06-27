@@ -60,10 +60,10 @@ public class DataBase {
         return asignaturasAElegir;
     }
     public ArrayList<Asignatura> buscarAsignaturasPorNivel(int nivel){
-         ArrayList<Asignatura> R = asignaturas.values().stream()
+         ArrayList<Asignatura> Ramos = asignaturas.values().stream()
                                               .filter(r->r.getNivel() == nivel)
                                               .collect(Collectors.toCollection(ArrayList::new));
-        return R;
+        return Ramos;
     }
 
     public boolean esAlumno(String matricula){
